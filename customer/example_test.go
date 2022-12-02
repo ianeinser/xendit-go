@@ -57,3 +57,43 @@ func ExampleGetCustomerByReferenceID() {
 
 	fmt.Printf("retrieved customer: %+v\n", resp)
 }
+
+func ExampleUpdateCustomer() {
+	xendit.Opt.SecretKey = "examplesecretkey"
+
+	individualDetail := xendit.IndividualDetail{
+		GivenNames:  "Tony",
+		Surname:     "Stark",
+		Nationality: "American",
+		Gender:      "male",
+	}
+
+	customerAddress := xendit.CustomerAddress{
+		Country:     "ID",
+		StreetLine1: "Jl. 123",
+		StreetLine2: "Jl. 456",
+		City:        "Jakarta Selatan",
+		Province:    "DKI Jakarta",
+		State:       "-",
+		PostalCode:  "12345",
+	}
+
+	metadata := map[string]interface{}{
+		"meta": "data",
+	}
+
+	data := customer.UpdateCustomerParams{
+		IndividualDetail: individualDetail,
+		Email:            "tes@tes.com",
+		Addresses:        []xendit.CustomerAddress{customerAddress},
+		Metadata:         metadata,
+	}
+
+	resp, err := customer.UpdateCustomer(&data)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("updated customer: %+v\n", resp)
+
+}
