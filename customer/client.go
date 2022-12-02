@@ -85,3 +85,45 @@ func (c *Client) GetCustomerByReferenceIDWithContext(ctx context.Context, data *
 
 	return response, nil
 }
+
+// UpdateCustomer updates the details on a customer
+func (c *Client) UpdateCustomer(data *UpdateCustomerParams) (*xendit.Customer, *xendit.Error) {
+	return c.UpdateCustomerWithContext(context.Background(), data)
+}
+
+// UpdateCustomerWithContext updates the details on a customer
+func (c *Client) UpdateCustomerWithContext(ctx context.Context, data *UpdateCustomerParams) (*xendit.Customer, *xendit.Error) {
+	if err := validator.ValidateRequired(ctx, data); err != nil {
+		return nil, validator.APIValidatorErr(err)
+	}
+
+	response := &xendit.Customer{}
+	header := http.Header{}
+	var queryString string
+
+	if data != nil {
+		queryString = data.Metadata["customer_id"].(string)
+	}
+
+	if data.ForUserID != "" {
+		header.Add("for-user-id", data.ForUserID)
+	}
+	if data.APIVersion != "" {
+		header.Add("api-version", data.APIVersion)
+	}
+
+	err := c.APIRequester.Call(
+		ctx,
+		"PATCH",
+		fmt.Sprintf("%s/customers/%s", c.Opt.XenditURL, queryString),
+		c.Opt.SecretKey,
+		header,
+		data,
+		response,
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	return response, nil
+}

@@ -37,3 +37,15 @@ func (p *GetCustomerByReferenceIDParams) QueryString() string {
 
 	return urlValues.Encode()
 }
+
+// UpdateCustomerParams contains parameters for UpdateCustomer
+type UpdateCustomerParams struct {
+	ForUserID        string                   `json:"-"`
+	APIVersion       string                   `json:"-"`
+	IndividualDetail xendit.IndividualDetail  `json:"individual_detail"`
+	BusinessDetail   xendit.BusinessDetail    `json:"business_detail"`
+	MobileNumber     string                   `json:"mobile_number"`
+	Email            string                   `json:"email,omitempty"`
+	Addresses        []xendit.CustomerAddress `json:"addresses,omitempty"`
+	Metadata         map[string]interface{}   `json:"metadata,omitempty"`
+}
