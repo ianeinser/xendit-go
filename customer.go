@@ -2,7 +2,7 @@ package xendit
 
 // CustomerAddress contains data from Xendit's API response of customer's Customer Addres requests.
 // For more details see https://xendit.github.io/apireference/?bash#customers.
-// For documentation of subpackage customer, checkout https://pkg.go.dev/github.com/xendit/xendit-go/customer/
+// For documentation of subpackage customer, checkout https://pkg.go.dev/github.com/ianeinser/xendit-go/customer/
 type CustomerAddress struct {
 	Country     string `json:"country" validate:"required"`
 	StreetLine1 string `json:"street_line1,omitempty"`
@@ -17,7 +17,7 @@ type CustomerAddress struct {
 
 // Customer contains data from Xendit's API response of customer related requests.
 // For more details see https://xendit.github.io/apireference/?bash#customers.
-// For documentation of subpackage customer, checkout https://pkg.go.dev/github.com/xendit/xendit-go/customer/
+// For documentation of subpackage customer, checkout https://pkg.go.dev/github.com/ianeinser/xendit-go/customer/
 type Customer struct {
 	ID               string                 `json:"id"`
 	ReferenceID      string                 `json:"reference_id"`

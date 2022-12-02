@@ -13,7 +13,7 @@ const (
 
 // RetailOutlet contains data from Xendit's API response of retail outlet related requests.
 // For more details see https://xendit.github.io/apireference/?bash#retail-outlets.
-// For documentation of subpackage retailoutlet, checkout https://pkg.go.dev/github.com/xendit/xendit-go/retailoutlet
+// For documentation of subpackage retailoutlet, checkout https://pkg.go.dev/github.com/ianeinser/xendit-go/retailoutlet
 type RetailOutlet struct {
 	IsSingleUse      bool                 `json:"is_single_use"`
 	Status           string               `json:"status"`
@@ -31,7 +31,7 @@ type RetailOutlet struct {
 
 // RetailOutletPayments contains data from Xendit's API response of Retail Outlet Get Payments By Fixed Payment Code ID requests.
 // For more details see https://developers.xendit.co/api-reference/#get-payments-by-fixed-payment-code-id.
-// For documentation of subpackage direct debit payment, checkout https://pkg.go.dev/github.com/xendit/xendit-go/retailoutlet/
+// For documentation of subpackage direct debit payment, checkout https://pkg.go.dev/github.com/ianeinser/xendit-go/retailoutlet/
 type RetailOutletPayments struct {
 	Data    []RetailOutletPayment     `json:"data"`
 	HasMore bool                      `json:"has_more"`
@@ -47,7 +47,7 @@ type RetailOutletPaymentsLinks struct {
 
 // RetailOutletPayments contains data from Xendit's API response of Retail Outlet Get Payments By Fixed Payment Code ID requests.
 // For more details see https://developers.xendit.co/api-reference/#get-payments-by-fixed-payment-code-id.
-// For documentation of subpackage direct debit payment, checkout https://pkg.go.dev/github.com/xendit/xendit-go/retailoutlet/
+// For documentation of subpackage direct debit payment, checkout https://pkg.go.dev/github.com/ianeinser/xendit-go/retailoutlet/
 
 type RetailOutletPayment struct {
 	ID                        string               `json:"id"`

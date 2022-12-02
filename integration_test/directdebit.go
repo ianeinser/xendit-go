@@ -5,11 +5,11 @@ import (
 	"log"
 	"time"
 
-	"github.com/xendit/xendit-go"
-	"github.com/xendit/xendit-go/customer"
-	"github.com/xendit/xendit-go/directdebit/directdebitpayment"
-	"github.com/xendit/xendit-go/directdebit/linkedaccount"
-	"github.com/xendit/xendit-go/directdebit/paymentmethod"
+	"github.com/ianeinser/xendit-go"
+	"github.com/ianeinser/xendit-go/customer"
+	"github.com/ianeinser/xendit-go/directdebit/directdebitpayment"
+	"github.com/ianeinser/xendit-go/directdebit/linkedaccount"
+	"github.com/ianeinser/xendit-go/directdebit/paymentmethod"
 )
 
 func directDebitTest() {

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/xendit/xendit-go"
-	"github.com/xendit/xendit-go/customer"
+	"github.com/ianeinser/xendit-go"
+	"github.com/ianeinser/xendit-go/customer"
 )
 
 func ExampleCreateCustomer() {

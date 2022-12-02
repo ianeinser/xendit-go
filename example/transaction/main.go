@@ -5,9 +5,9 @@ import (
 	"log"
 	"os"
 
+	"github.com/ianeinser/xendit-go"
+	"github.com/ianeinser/xendit-go/transaction"
 	"github.com/joho/godotenv"
-	"github.com/xendit/xendit-go"
-	"github.com/xendit/xendit-go/transaction"
 )
 
 func main() {

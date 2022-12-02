@@ -4,7 +4,7 @@ import "time"
 
 // Transaction contains data from Xendit's API response of invoice related request.
 // For more details see https://developers.xendit.co/api-reference/#transactions.
-// For documentation of subpackage payout, checkout https://pkg.go.dev/github.com/xendit/xendit-go/transaction
+// For documentation of subpackage payout, checkout https://pkg.go.dev/github.com/ianeinser/xendit-go/transaction
 type Transaction struct {
 	ID                string         `json:"id"`
 	ProductID         string         `json:"product_id"`

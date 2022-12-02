@@ -5,8 +5,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/xendit/xendit-go"
-	"github.com/xendit/xendit-go/retailoutlet"
+	"github.com/ianeinser/xendit-go"
+	"github.com/ianeinser/xendit-go/retailoutlet"
 )
 
 func retailoutletTest() {

@@ -20,7 +20,7 @@ const (
 
 // EWallet contains data from Xendit's API response of e-wallet related requests.
 // For more details see https://xendit.github.io/apireference/?bash#ewallets.
-// For documentation of subpackage ewallet, checkout https://pkg.go.dev/github.com/xendit/xendit-go/ewallet
+// For documentation of subpackage ewallet, checkout https://pkg.go.dev/github.com/ianeinser/xendit-go/ewallet
 type EWallet struct {
 	EWalletType          EWalletTypeEnum `json:"ewallet_type"`
 	ExternalID           string          `json:"external_id"`
@@ -77,7 +77,6 @@ type ShippingInformation struct {
 	PostalCode    string  `json:"postal_code"`
 }
 
-//
 type EwalletCustomer struct {
 	ReferenceId            *string `json:"reference_id,omitempty"`
 	GivenNames             *string `json:"given_names,omitempty"`
@@ -88,7 +87,7 @@ type EwalletCustomer struct {
 	DateOfRegistration     *string `json:"date_of_registration,omitempty"`
 }
 
-//EWalletCharge represents the response from Xendit Ewallet Charge API
+// EWalletCharge represents the response from Xendit Ewallet Charge API
 type EWalletCharge struct {
 	ID                   string                 `json:"id"`
 	BusinessID           string                 `json:"business_id"`

@@ -1,6 +1,6 @@
 package account
 
-import "github.com/xendit/xendit-go"
+import "github.com/ianeinser/xendit-go"
 
 type CreateParams struct {
 	Email         string               `json:"email" validate:"required"`

@@ -9,11 +9,11 @@ import (
 	"time"
 
 	"github.com/google/go-querystring/query"
+	"github.com/ianeinser/xendit-go"
+	"github.com/ianeinser/xendit-go/transaction"
+	"github.com/ianeinser/xendit-go/utils/validator"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"github.com/xendit/xendit-go"
-	"github.com/xendit/xendit-go/transaction"
-	"github.com/xendit/xendit-go/utils/validator"
 )
 
 func initTesting(apiRequesterMockObj xendit.APIRequester) {

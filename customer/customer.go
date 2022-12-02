@@ -3,7 +3,7 @@ package customer
 import (
 	"context"
 
-	"github.com/xendit/xendit-go"
+	"github.com/ianeinser/xendit-go"
 )
 
 // CreateCustomer creates new customer

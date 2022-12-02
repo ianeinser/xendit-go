@@ -3,7 +3,7 @@ package transaction
 import (
 	"context"
 
-	"github.com/xendit/xendit-go"
+	"github.com/ianeinser/xendit-go"
 )
 
 // GetTransaction gets one retail outlet fixed payment code

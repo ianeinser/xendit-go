@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/xendit/xendit-go"
-	"github.com/xendit/xendit-go/utils/validator"
+	"github.com/ianeinser/xendit-go"
+	"github.com/ianeinser/xendit-go/utils/validator"
 )
 
 // Client is the client used to invoke QRCode API.

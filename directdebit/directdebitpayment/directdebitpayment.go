@@ -3,7 +3,7 @@ package directdebitpayment
 import (
 	"context"
 
-	"github.com/xendit/xendit-go"
+	"github.com/ianeinser/xendit-go"
 )
 
 // CreateDirectDebitPayment created new direct debit payment

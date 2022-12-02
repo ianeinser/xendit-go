@@ -3,7 +3,7 @@ package paymentmethod
 import (
 	"context"
 
-	"github.com/xendit/xendit-go"
+	"github.com/ianeinser/xendit-go"
 )
 
 // CreatePaymentMethod creates new payment method

@@ -4,7 +4,7 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/xendit/xendit-go"
+	"github.com/ianeinser/xendit-go"
 )
 
 // Item is data that contained in CreatePaymentParams at Items

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/xendit/xendit-go/client"
-	"github.com/xendit/xendit-go/invoice"
+	"github.com/ianeinser/xendit-go/client"
+	"github.com/ianeinser/xendit-go/invoice"
 )
 
 // This example shows the usage of Xendit's API client

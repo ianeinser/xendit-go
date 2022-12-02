@@ -3,7 +3,7 @@ package payment
 import (
 	"net/url"
 
-	"github.com/xendit/xendit-go"
+	"github.com/ianeinser/xendit-go"
 )
 
 // CreatePaymentMethodParams contains parameters for CreatePaymentMethod

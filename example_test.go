@@ -5,9 +5,9 @@ import (
 	"log"
 	"time"
 
-	"github.com/xendit/xendit-go"
-	"github.com/xendit/xendit-go/client"
-	"github.com/xendit/xendit-go/disbursement"
+	"github.com/ianeinser/xendit-go"
+	"github.com/ianeinser/xendit-go/client"
+	"github.com/ianeinser/xendit-go/disbursement"
 )
 
 func ExampleDisbursement_createWithoutClient() {

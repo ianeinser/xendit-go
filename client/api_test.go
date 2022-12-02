@@ -3,8 +3,8 @@ package client
 import (
 	"testing"
 
+	"github.com/ianeinser/xendit-go"
 	"github.com/stretchr/testify/assert"
-	"github.com/xendit/xendit-go"
 )
 
 func TestAPIInit(t *testing.T) {

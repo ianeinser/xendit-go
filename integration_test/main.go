@@ -4,10 +4,10 @@ import (
 	"os"
 	"sync"
 
-	"github.com/xendit/xendit-go"
+	"github.com/ianeinser/xendit-go"
 )
 
-//array of functions to test
+// array of functions to test
 var testFunctions = []func(){
 	balanceTest,
 	cardTest,

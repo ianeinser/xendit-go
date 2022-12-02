@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	gpv "github.com/go-playground/validator/v10"
-	"github.com/xendit/xendit-go"
+	"github.com/ianeinser/xendit-go"
 )
 
 var (

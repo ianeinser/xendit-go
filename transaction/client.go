@@ -6,8 +6,8 @@ import (
 	"net/http"
 
 	"github.com/google/go-querystring/query"
-	"github.com/xendit/xendit-go"
-	"github.com/xendit/xendit-go/utils/validator"
+	"github.com/ianeinser/xendit-go"
+	"github.com/ianeinser/xendit-go/utils/validator"
 )
 
 // Client is the client used to invoke invoice API.

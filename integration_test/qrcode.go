@@ -5,8 +5,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/xendit/xendit-go"
-	"github.com/xendit/xendit-go/qrcode"
+	"github.com/ianeinser/xendit-go"
+	"github.com/ianeinser/xendit-go/qrcode"
 )
 
 func qrcodeTest() {

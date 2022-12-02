@@ -5,9 +5,9 @@ import (
 	"log"
 	"time"
 
-	"github.com/xendit/xendit-go/cardlesscredit"
+	"github.com/ianeinser/xendit-go/cardlesscredit"
 
-	"github.com/xendit/xendit-go"
+	"github.com/ianeinser/xendit-go"
 )
 
 func ExampleCreatePayment() {

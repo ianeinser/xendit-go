@@ -3,7 +3,7 @@ package recurringpayment
 import (
 	"context"
 
-	"github.com/xendit/xendit-go"
+	"github.com/ianeinser/xendit-go"
 )
 
 // Create creates new recurring payment

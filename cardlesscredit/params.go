@@ -1,6 +1,6 @@
 package cardlesscredit
 
-import "github.com/xendit/xendit-go"
+import "github.com/ianeinser/xendit-go"
 
 // CreatePaymentParams contains parameters for CreatePayment
 type CreatePaymentParams struct {

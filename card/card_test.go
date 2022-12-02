@@ -7,11 +7,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/ianeinser/xendit-go"
+	"github.com/ianeinser/xendit-go/card"
+	"github.com/ianeinser/xendit-go/utils/validator"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"github.com/xendit/xendit-go"
-	"github.com/xendit/xendit-go/card"
-	"github.com/xendit/xendit-go/utils/validator"
 )
 
 func initTesting(apiRequesterMockObj xendit.APIRequester) {

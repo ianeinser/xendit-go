@@ -4,19 +4,19 @@ package client
 import (
 	"net/http"
 
-	"github.com/xendit/xendit-go"
-	"github.com/xendit/xendit-go/balance"
-	"github.com/xendit/xendit-go/card"
-	"github.com/xendit/xendit-go/cardlesscredit"
-	"github.com/xendit/xendit-go/customer"
-	"github.com/xendit/xendit-go/disbursement"
-	"github.com/xendit/xendit-go/ewallet"
-	"github.com/xendit/xendit-go/invoice"
-	"github.com/xendit/xendit-go/payout"
-	"github.com/xendit/xendit-go/qrcode"
-	"github.com/xendit/xendit-go/recurringpayment"
-	"github.com/xendit/xendit-go/retailoutlet"
-	"github.com/xendit/xendit-go/virtualaccount"
+	"github.com/ianeinser/xendit-go"
+	"github.com/ianeinser/xendit-go/balance"
+	"github.com/ianeinser/xendit-go/card"
+	"github.com/ianeinser/xendit-go/cardlesscredit"
+	"github.com/ianeinser/xendit-go/customer"
+	"github.com/ianeinser/xendit-go/disbursement"
+	"github.com/ianeinser/xendit-go/ewallet"
+	"github.com/ianeinser/xendit-go/invoice"
+	"github.com/ianeinser/xendit-go/payout"
+	"github.com/ianeinser/xendit-go/qrcode"
+	"github.com/ianeinser/xendit-go/recurringpayment"
+	"github.com/ianeinser/xendit-go/retailoutlet"
+	"github.com/ianeinser/xendit-go/virtualaccount"
 )
 
 // API is the Xendit client which contains all products
@@ -68,7 +68,8 @@ func New(secretKey string) *API {
 
 // WithAPIRequester set custom APIRequester for Xendit Client
 // Can be chained with constructor like below:
-// 		client.New(yourSecretKey).WithAPIRequester(yourCustomRequester)
+//
+//	client.New(yourSecretKey).WithAPIRequester(yourCustomRequester)
 func (a *API) WithAPIRequester(apiRequester xendit.APIRequester) *API {
 	a.apiRequester = apiRequester
 	a.init()
@@ -77,7 +78,8 @@ func (a *API) WithAPIRequester(apiRequester xendit.APIRequester) *API {
 
 // WithCustomURL set custom xendit URL for Xendit Client
 // Can be chained with constructor like below:
-// 		client.New(yourSecretKey).WithCustomURL(yourCustomURL)
+//
+//	client.New(yourSecretKey).WithCustomURL(yourCustomURL)
 func (a *API) WithCustomURL(xenditURL string) *API {
 	a.opt.XenditURL = xenditURL
 	a.init()
@@ -86,7 +88,8 @@ func (a *API) WithCustomURL(xenditURL string) *API {
 
 // WithCustomHTTPClient set custom HTTP Client for default API Requester
 // Can be chained with constructor like below:
-// 		client.New(yourSecretKey).WithCustomHTTPClient(yourCustomHTTPClient)
+//
+//	client.New(yourSecretKey).WithCustomHTTPClient(yourCustomHTTPClient)
 func (a *API) WithCustomHTTPClient(client *http.Client) *API {
 	a.apiRequester = &xendit.APIRequesterImplementation{
 		HTTPClient: client,

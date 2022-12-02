@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/xendit/xendit-go"
-	"github.com/xendit/xendit-go/card"
+	"github.com/ianeinser/xendit-go"
+	"github.com/ianeinser/xendit-go/card"
 )
 
 func ExampleCreateCharge() {

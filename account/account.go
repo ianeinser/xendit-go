@@ -3,7 +3,7 @@ package account
 import (
 	"context"
 
-	"github.com/xendit/xendit-go"
+	"github.com/ianeinser/xendit-go"
 )
 
 // Create creates new account
@@ -21,7 +21,7 @@ func CreateWithContext(ctx context.Context, data *CreateParams) (*xendit.Account
 	return client.CreateWithContext(ctx, data)
 }
 
-//  Get gets one account
+// Get gets one account
 func Get(data *GetParams) (*xendit.Account, *xendit.Error) {
 	return GetWithContext(context.Background(), data)
 }

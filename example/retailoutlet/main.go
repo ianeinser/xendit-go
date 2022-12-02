@@ -6,9 +6,9 @@ import (
 	"os"
 	"time"
 
+	"github.com/ianeinser/xendit-go"
+	"github.com/ianeinser/xendit-go/retailoutlet"
 	"github.com/joho/godotenv"
-	"github.com/xendit/xendit-go"
-	"github.com/xendit/xendit-go/retailoutlet"
 )
 
 func main() {

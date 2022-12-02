@@ -3,7 +3,7 @@ package disbursementph
 import (
 	"net/url"
 
-	"github.com/xendit/xendit-go"
+	"github.com/ianeinser/xendit-go"
 )
 
 // CreateParams contains parameters for Create

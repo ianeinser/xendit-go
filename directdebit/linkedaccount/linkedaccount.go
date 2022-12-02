@@ -3,7 +3,7 @@ package linkedaccount
 import (
 	"context"
 
-	"github.com/xendit/xendit-go"
+	"github.com/ianeinser/xendit-go"
 )
 
 // InitializeLinkedAccountTokenization initialize new linked account tokenization

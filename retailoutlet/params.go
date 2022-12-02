@@ -3,7 +3,7 @@ package retailoutlet
 import (
 	"time"
 
-	"github.com/xendit/xendit-go"
+	"github.com/ianeinser/xendit-go"
 )
 
 // CreateFixedPaymentCodeParams contains parameters for CreateFixedPaymentCode
