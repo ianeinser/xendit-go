@@ -29,9 +29,6 @@ func directDebitTest() {
 
 	createCustomerData := customer.CreateCustomerParams{
 		ReferenceID:  time.Now().String(),
-		GivenNames:   "customer 1",
-		MiddleName:   "middle",
-		Surname:      "surname",
 		Email:        "customer@website.com",
 		MobileNumber: "+6281212345678",
 		Description:  "dummy customer",

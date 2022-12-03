@@ -53,6 +53,40 @@ func (c *Client) CreateCustomerWithContext(ctx context.Context, data *CreateCust
 }
 
 // GetCustomerByReferenceID gets customer by reference ID
+func (c *Client) GetCustomerByCustomerID(data *GetCustomerByCustomerIDParams) ([]xendit.Customer, *xendit.Error) {
+	return c.GetCustomerByCustomerIDWithContext(context.Background(), data)
+}
+
+// GetCustomerByReferenceIDWithContext gets customer by reference ID
+func (c *Client) GetCustomerByCustomerIDWithContext(ctx context.Context, data *GetCustomerByCustomerIDParams) ([]xendit.Customer, *xendit.Error) {
+	if err := validator.ValidateRequired(ctx, data); err != nil {
+		return nil, validator.APIValidatorErr(err)
+	}
+
+	response := []xendit.Customer{}
+	var queryString string
+
+	if data != nil {
+		queryString = data.QueryString()
+	}
+
+	err := c.APIRequester.Call(
+		ctx,
+		"GET",
+		fmt.Sprintf("%s/customers/%s", c.Opt.XenditURL, queryString),
+		c.Opt.SecretKey,
+		nil,
+		nil,
+		&response,
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	return response, nil
+}
+
+// GetCustomerByReferenceID gets customer by reference ID
 func (c *Client) GetCustomerByReferenceID(data *GetCustomerByReferenceIDParams) ([]xendit.Customer, *xendit.Error) {
 	return c.GetCustomerByReferenceIDWithContext(context.Background(), data)
 }

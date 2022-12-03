@@ -27,9 +27,6 @@ func customerTest() {
 	createCustomerData := customer.CreateCustomerParams{
 		ReferenceID: time.Now().String(),
 		Email:       "tes@tes.com",
-		GivenNames:  "Given Names",
-		Nationality: "ID",
-		DateOfBirth: "1995-12-30",
 		Addresses:   []xendit.CustomerAddress{customerAddress},
 		Metadata:    metadata,
 	}

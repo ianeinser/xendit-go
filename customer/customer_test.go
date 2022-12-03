@@ -80,9 +80,6 @@ func TestCreateCustomer(t *testing.T) {
 			data: &CreateCustomerParams{
 				ReferenceID: "test-reference-id",
 				Email:       "tes@tes.com",
-				GivenNames:  "Given Names",
-				Nationality: "ID",
-				DateOfBirth: "1995-12-30",
 				Addresses:   []xendit.CustomerAddress{customerAddress},
 				Metadata:    metadata,
 			},
