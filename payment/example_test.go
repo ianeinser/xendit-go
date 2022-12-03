@@ -28,8 +28,8 @@ func ExampleCreatePaymentMethod() {
 	data := payment.CreatePaymentMethodParams{
 		Type:               "",
 		Reusability:        "",
-		ReferenceId:        "",
-		CustomerId:         "",
+		ReferenceID:        "",
+		CustomerID:         "",
 		Country:            "",
 		Description:        "",
 		BillingInformation: billingInformation,

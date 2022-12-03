@@ -36,6 +36,21 @@ func ListPaymentMethodsWithContext(ctx context.Context, data *ListPaymentMethods
 	return client.ListPaymentMethodsWithContext(ctx, data)
 }
 
+// GetPaymentMethodById returns the corresponding Payment Method that matches the provided ID.
+func GetPaymentMethodById(data *GetPaymentMethodByIdParams) (*xendit.PaymentMethod2, *xendit.Error) {
+	return GetPaymentMethodByIdWithContext(context.Background(), data)
+}
+
+// GetPaymentMethodByIdWithContext returns the corresponding Payment Method that matches the provided ID.
+func GetPaymentMethodByIdWithContext(ctx context.Context, data *GetPaymentMethodByIdParams) (*xendit.PaymentMethod2, *xendit.Error) {
+	client, err := getClient()
+	if err != nil {
+		return nil, err
+	}
+
+	return client.GetPaymentMethodByIdWithContext(ctx, data)
+}
+
 // ListPaymentsByPayentMethodId returns a list of matching Payment objects made on a Payment Method
 func ListPaymentsByPaymentMethodId(data *ListPaymentsByPaymentMethodIdParams) (*ListPaymentsByPaymentMethodIdResponse, *xendit.Error) {
 	return ListPaymentsByPaymentMethodIdWithContext(context.Background(), data)

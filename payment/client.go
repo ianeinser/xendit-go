@@ -28,11 +28,12 @@ func (c *Client) CreatePaymentMethodWithContext(ctx context.Context, data *Creat
 	response := &xendit.PaymentMethod2{}
 	header := http.Header{}
 
+	if data.IdempotencyKey != "" {
+		header.Add("idempotency-key", data.IdempotencyKey)
+	}
+
 	if data.ForUserID != "" {
 		header.Add("for-user-id", data.ForUserID)
-	}
-	if data.APIVersion != "" {
-		header.Add("api-version", data.APIVersion)
 	}
 
 	err := c.APIRequester.Call(
@@ -73,14 +74,46 @@ func (c *Client) ListPaymentMethodsWithContext(ctx context.Context, data *ListPa
 	if data.ForUserID != "" {
 		header.Add("for-user-id", data.ForUserID)
 	}
-	if data.APIVersion != "" {
-		header.Add("api-version", data.APIVersion)
-	}
 
 	err := c.APIRequester.Call(
 		ctx,
 		"GET",
 		fmt.Sprintf("%s/v2/payment_methods?%s", c.Opt.XenditURL, queryString),
+		c.Opt.SecretKey,
+		nil,
+		nil,
+		&response,
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	return response, nil
+}
+
+// GetPaymentMethodById returns the corresponding Payment Method that matches the provided ID.
+func (c *Client) GetPaymentMethodById(data *GetPaymentMethodByIdParams) (*xendit.PaymentMethod2, *xendit.Error) {
+	return c.GetPaymentMethodByIdWithContext(context.Background(), data)
+}
+
+// GetPaymentMethodByIdWithContext returns the corresponding Payment Method that matches the provided ID.
+func (c *Client) GetPaymentMethodByIdWithContext(ctx context.Context, data *GetPaymentMethodByIdParams) (*xendit.PaymentMethod2, *xendit.Error) {
+	if err := validator.ValidateRequired(ctx, data); err != nil {
+		return nil, validator.APIValidatorErr(err)
+	}
+
+	response := &xendit.PaymentMethod2{}
+
+	header := http.Header{}
+
+	if data.ForUserID != "" {
+		header.Add("for-user-id", data.ForUserID)
+	}
+
+	err := c.APIRequester.Call(
+		ctx,
+		"GET",
+		fmt.Sprintf("%s/v2/payment_methods/%s", c.Opt.XenditURL, data.ID),
 		c.Opt.SecretKey,
 		nil,
 		nil,
@@ -107,10 +140,7 @@ func (c *Client) ListPaymentsByPaymentMethodIdWithContext(ctx context.Context, d
 	response := &ListPaymentsByPaymentMethodIdResponse{}
 	var queryString string
 
-	id := ""
 	if data != nil {
-		id = data.ID
-		data.ID = ""
 		queryString = data.QueryString()
 	}
 	header := http.Header{}
@@ -119,14 +149,10 @@ func (c *Client) ListPaymentsByPaymentMethodIdWithContext(ctx context.Context, d
 		header.Add("for-user-id", data.ForUserID)
 	}
 
-	if data.APIVersion != "" {
-		header.Add("api-version", data.APIVersion)
-	}
-
 	err := c.APIRequester.Call(
 		ctx,
 		"GET",
-		fmt.Sprintf("%s/v2/payment_methods/%s/payments?%s", c.Opt.XenditURL, id, queryString),
+		fmt.Sprintf("%s/v2/payment_methods/%s/payments?%s", c.Opt.XenditURL, data.ID, queryString),
 		c.Opt.SecretKey,
 		nil,
 		nil,
@@ -157,11 +183,12 @@ func (c *Client) CreatePaymentRequestWithContext(ctx context.Context, data *Crea
 	response := &xendit.PaymentRequest{}
 	header := http.Header{}
 
+	if data.IdempotencyKey != "" {
+		header.Add("idempotency-key", data.IdempotencyKey)
+	}
+
 	if data.ForUserID != "" {
 		header.Add("for-user-id", data.ForUserID)
-	}
-	if data.APIVersion != "" {
-		header.Add("api-version", data.APIVersion)
 	}
 
 	err := c.APIRequester.Call(
@@ -201,9 +228,6 @@ func (c *Client) ListPaymentRequestsWithContext(ctx context.Context, data *ListP
 
 	if data.ForUserID != "" {
 		header.Add("for-user-id", data.ForUserID)
-	}
-	if data.APIVersion != "" {
-		header.Add("api-version", data.APIVersion)
 	}
 
 	err := c.APIRequester.Call(
@@ -275,11 +299,12 @@ func (c *Client) CreateRefundWithContext(ctx context.Context, data *CreateRefund
 	response := &xendit.Refund{}
 	header := http.Header{}
 
+	if data.IdempotencyKey != "" {
+		header.Add("idempotency-key", data.IdempotencyKey)
+	}
+
 	if data.ForUserID != "" {
 		header.Add("for-user-id", data.ForUserID)
-	}
-	if data.APIVersion != "" {
-		header.Add("api-version", data.APIVersion)
 	}
 
 	err := c.APIRequester.Call(
@@ -320,9 +345,6 @@ func (c *Client) ListRefundsWithContext(ctx context.Context, data *ListRefundsPa
 	if data.ForUserID != "" {
 		header.Add("for-user-id", data.ForUserID)
 	}
-	if data.APIVersion != "" {
-		header.Add("api-version", data.APIVersion)
-	}
 
 	err := c.APIRequester.Call(
 		ctx,
@@ -357,10 +379,6 @@ func (c *Client) GetRefundByIdWithContext(ctx context.Context, data *GetRefundBy
 
 	if data.ForUserID != "" {
 		header.Add("for-user-id", data.ForUserID)
-	}
-
-	if data.APIVersion != "" {
-		header.Add("api-version", data.APIVersion)
 	}
 
 	err := c.APIRequester.Call(

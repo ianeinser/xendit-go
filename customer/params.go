@@ -27,7 +27,7 @@ type CreateCustomerParams struct {
 
 // GetCustomerByReferenceIDParams contains parameters for GetCustomerByReferenceID
 type GetCustomerByCustomerIDParams struct {
-	CustomerID string `json:"customer_id" validate:"required"`
+	CustomerID string `json:"-"`
 }
 
 // QueryString creates query string from GetCustomerByReferenceIDParams, ignores nil values
@@ -41,7 +41,7 @@ func (p *GetCustomerByCustomerIDParams) QueryString() string {
 
 // GetCustomerByReferenceIDParams contains parameters for GetCustomerByReferenceID
 type GetCustomerByReferenceIDParams struct {
-	ReferenceID string `json:"reference_id" validate:"required"`
+	ReferenceID string `json:"-"`
 }
 
 // QueryString creates query string from GetCustomerByReferenceIDParams, ignores nil values
