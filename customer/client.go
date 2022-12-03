@@ -53,12 +53,12 @@ func (c *Client) CreateCustomerWithContext(ctx context.Context, data *CreateCust
 }
 
 // GetCustomerByReferenceID gets customer by reference ID
-func (c *Client) GetCustomerByCustomerID(data *GetCustomerByCustomerIDParams) ([]xendit.Customer, *xendit.Error) {
+func (c *Client) GetCustomerByCustomerID(data *GetCustomerByCustomerIDParams) (*[]xendit.Customer, *xendit.Error) {
 	return c.GetCustomerByCustomerIDWithContext(context.Background(), data)
 }
 
 // GetCustomerByReferenceIDWithContext gets customer by reference ID
-func (c *Client) GetCustomerByCustomerIDWithContext(ctx context.Context, data *GetCustomerByCustomerIDParams) ([]xendit.Customer, *xendit.Error) {
+func (c *Client) GetCustomerByCustomerIDWithContext(ctx context.Context, data *GetCustomerByCustomerIDParams) (*[]xendit.Customer, *xendit.Error) {
 	if err := validator.ValidateRequired(ctx, data); err != nil {
 		return nil, validator.APIValidatorErr(err)
 	}
@@ -83,16 +83,16 @@ func (c *Client) GetCustomerByCustomerIDWithContext(ctx context.Context, data *G
 		return nil, err
 	}
 
-	return response, nil
+	return &response, nil
 }
 
 // GetCustomerByReferenceID gets customer by reference ID
-func (c *Client) GetCustomerByReferenceID(data *GetCustomerByReferenceIDParams) ([]xendit.Customer, *xendit.Error) {
+func (c *Client) GetCustomerByReferenceID(data *GetCustomerByReferenceIDParams) (*[]xendit.Customer, *xendit.Error) {
 	return c.GetCustomerByReferenceIDWithContext(context.Background(), data)
 }
 
 // GetCustomerByReferenceIDWithContext gets customer by reference ID
-func (c *Client) GetCustomerByReferenceIDWithContext(ctx context.Context, data *GetCustomerByReferenceIDParams) ([]xendit.Customer, *xendit.Error) {
+func (c *Client) GetCustomerByReferenceIDWithContext(ctx context.Context, data *GetCustomerByReferenceIDParams) (*[]xendit.Customer, *xendit.Error) {
 	if err := validator.ValidateRequired(ctx, data); err != nil {
 		return nil, validator.APIValidatorErr(err)
 	}
@@ -117,7 +117,7 @@ func (c *Client) GetCustomerByReferenceIDWithContext(ctx context.Context, data *
 		return nil, err
 	}
 
-	return response, nil
+	return &response, nil
 }
 
 // UpdateCustomer updates the details on a customer

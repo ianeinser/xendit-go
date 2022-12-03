@@ -22,12 +22,12 @@ func CreateCustomerWithContext(ctx context.Context, data *CreateCustomerParams) 
 }
 
 // GetCustomerByCustomerID gets customer by customer ID
-func GetCustomerByCustomerID(data *GetCustomerByCustomerIDParams) ([]xendit.Customer, *xendit.Error) {
+func GetCustomerByCustomerID(data *GetCustomerByCustomerIDParams) (*[]xendit.Customer, *xendit.Error) {
 	return GetCustomerByCustomerIDWithContext(context.Background(), data)
 }
 
 // GetCustomerByCustomerIDWithContext gets customer by customer ID
-func GetCustomerByCustomerIDWithContext(ctx context.Context, data *GetCustomerByCustomerIDParams) ([]xendit.Customer, *xendit.Error) {
+func GetCustomerByCustomerIDWithContext(ctx context.Context, data *GetCustomerByCustomerIDParams) (*[]xendit.Customer, *xendit.Error) {
 	client, err := getClient()
 	if err != nil {
 		return nil, err
@@ -37,12 +37,12 @@ func GetCustomerByCustomerIDWithContext(ctx context.Context, data *GetCustomerBy
 }
 
 // GetCustomerByReferenceID gets customer by reference ID
-func GetCustomerByReferenceID(data *GetCustomerByReferenceIDParams) ([]xendit.Customer, *xendit.Error) {
+func GetCustomerByReferenceID(data *GetCustomerByReferenceIDParams) (*[]xendit.Customer, *xendit.Error) {
 	return GetCustomerByReferenceIDWithContext(context.Background(), data)
 }
 
 // GetCustomerByReferenceIDWithContext gets customer by reference ID
-func GetCustomerByReferenceIDWithContext(ctx context.Context, data *GetCustomerByReferenceIDParams) ([]xendit.Customer, *xendit.Error) {
+func GetCustomerByReferenceIDWithContext(ctx context.Context, data *GetCustomerByReferenceIDParams) (*[]xendit.Customer, *xendit.Error) {
 	client, err := getClient()
 	if err != nil {
 		return nil, err
