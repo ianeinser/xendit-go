@@ -29,7 +29,7 @@ type ChannelProperties struct {
 	CardLastFour         string `json:"card_last_four,omitempty"`
 	CardExpiry           string `json:"card_expiry,omitempty"`
 	Email                string `json:"email,omitempty"`
-	SkipThreeDSecure     string `json:"skip_three_d_secure,omitempty"`
+	SkipThreeDSecure     bool   `json:"skip_three_d_secure,omitempty"`
 	CardOnFileType       string `json:"cardonfile_type,omitempty"`
 	CustomerName         string `json:"customer_name,omitempty"`
 	PaymentCode          string `json:"payment_code,omitempty"`
