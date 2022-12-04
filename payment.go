@@ -2,9 +2,9 @@ package xendit
 
 type Payment struct {
 	ID                string                 `json:"id"`
-	PaymentRequestId  string                 `json:"payment_request_id,omitempty"`
-	ReferenceId       string                 `json:"reference_id"`
-	CustomerId        string                 `json:"customer_id,omitempty"`
+	PaymentRequestID  string                 `json:"payment_request_id,omitempty"`
+	ReferenceID       string                 `json:"reference_id"`
+	CustomerID        string                 `json:"customer_id,omitempty"`
 	Currency          string                 `json:"currency"`
 	Amount            float64                `json:"amount"`
 	Country           string                 `json:"country"`
@@ -45,14 +45,14 @@ type PaymentDetail struct {
 
 type PaymentMethod2 struct {
 	ID                 string                 `json:"id"`
-	BusinessId         string                 `json:"business_id"`
-	CustomerId         string                 `json:"customer_id,omitempty"`
-	ReferenceId        string                 `json:"reference_id,omitempty"`
+	BusinessID         string                 `json:"business_id"`
+	CustomerID         string                 `json:"customer_id,omitempty"`
+	ReferenceID        string                 `json:"reference_id,omitempty"`
 	Reusability        string                 `json:"reusability"`
 	Country            string                 `json:"country"`
 	Status             string                 `json:"status"`
 	Actions            Actions2               `json:"actions"`
-	PaymentRequestId   string                 `json:"payment_request_id"`
+	PaymentRequestID   string                 `json:"payment_request_id"`
 	Currency           string                 `json:"currency"`
 	Amount             float64                `json:"amount"`
 	Type               string                 `json:"type"`
@@ -160,9 +160,9 @@ type BillingInformation struct {
 
 type PaymentRequest struct {
 	ID                      string                  `json:"id"`
-	BusinessId              string                  `json:"business_id"`
-	CustomerId              string                  `json:"customer_id,omitempty"`
-	ReferenceId             string                  `json:"reference_id,omitempty"`
+	BusinessID              string                  `json:"business_id"`
+	CustomerID              string                  `json:"customer_id,omitempty"`
+	ReferenceID             string                  `json:"reference_id,omitempty"`
 	Currency                string                  `json:"currency"`
 	Amount                  float64                 `json:"amount"`
 	CaptureAmount           float64                 `json:"capture_amount"`
@@ -206,8 +206,8 @@ type ThreeDSecure struct {
 
 type Refund struct {
 	ID                string  `json:"id"`
-	PaymentRequestId  string  `json:"payment_request_id"`
-	InvoiceId         string  `json:"invoice_id"`
+	PaymentRequestID  string  `json:"payment_request_id"`
+	InvoiceID         string  `json:"invoice_id"`
 	PaymentMethodType string  `json:"payment_method_type"`
 	ReferenceId       string  `json:"reference_id"`
 	Status            string  `json:"status"`
