@@ -101,12 +101,12 @@ func ListPaymentRequestsWithContext(ctx context.Context, data *ListPaymentReques
 }
 
 // GetPaymentRequestById returns the corresponding Payment Method that matches the provided ID
-func GetPaymentRequestById(data *GetPaymentRequestsByIdParams) (*xendit.PaymentRequest, *xendit.Error) {
+func GetPaymentRequestById(data *GetPaymentRequestByIdParams) (*xendit.PaymentRequest, *xendit.Error) {
 	return GetPaymentRequestByIdWithContext(context.Background(), data)
 }
 
 // GetPaymentRequestByIdWithContext returns the corresponding Payment Method that matches the provided ID
-func GetPaymentRequestByIdWithContext(ctx context.Context, data *GetPaymentRequestsByIdParams) (*xendit.PaymentRequest, *xendit.Error) {
+func GetPaymentRequestByIdWithContext(ctx context.Context, data *GetPaymentRequestByIdParams) (*xendit.PaymentRequest, *xendit.Error) {
 	client, err := getClient()
 	if err != nil {
 		return nil, err

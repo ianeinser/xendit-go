@@ -247,12 +247,12 @@ func (c *Client) ListPaymentRequestsWithContext(ctx context.Context, data *ListP
 }
 
 // GetPaymentRequestById returns the corresponding Payment Method that matches the provided ID
-func (c *Client) GetPaymentRequestById(data *GetPaymentRequestsByIdParams) (*xendit.PaymentRequest, *xendit.Error) {
+func (c *Client) GetPaymentRequestById(data *GetPaymentRequestByIdParams) (*xendit.PaymentRequest, *xendit.Error) {
 	return c.GetPaymentRequestByIdWithContext(context.Background(), data)
 }
 
 // GetPaymentRequestByIdWithContext returns the corresponding Payment Method that matches the provided ID.
-func (c *Client) GetPaymentRequestByIdWithContext(ctx context.Context, data *GetPaymentRequestsByIdParams) (*xendit.PaymentRequest, *xendit.Error) {
+func (c *Client) GetPaymentRequestByIdWithContext(ctx context.Context, data *GetPaymentRequestByIdParams) (*xendit.PaymentRequest, *xendit.Error) {
 	if err := validator.ValidateRequired(ctx, data); err != nil {
 		return nil, validator.APIValidatorErr(err)
 	}
@@ -263,10 +263,6 @@ func (c *Client) GetPaymentRequestByIdWithContext(ctx context.Context, data *Get
 
 	if data.ForUserID != "" {
 		header.Add("for-user-id", data.ForUserID)
-	}
-
-	if data.APIVersion != "" {
-		header.Add("api-version", data.APIVersion)
 	}
 
 	err := c.APIRequester.Call(

@@ -96,7 +96,6 @@ type ListPaymentsByPaymentMethodIdResponse struct {
 type CreatePaymentRequestParams struct {
 	IdempotencyKey    string                   `json:"-"`
 	ForUserID         string                   `json:"-"`
-	APIVersion        string                   `json:"-"`
 	Currency          string                   `json:"currency"`
 	Amount            float64                  `json:"amount"`
 	ReferenceID       string                   `json:"reference_id,omitempty"`
@@ -136,11 +135,10 @@ type ListPaymentRequestsResponse struct {
 	HasMore bool                    `json:"has_more"`
 }
 
-// ListPaymentRequestsParams contains parameters for CreatePaymentRequest
-type GetPaymentRequestsByIdParams struct {
-	ForUserID  string `json:"-"`
-	APIVersion string `json:"-"`
-	ID         string `json:"id"`
+// GetPaymentRequestByIdParams contains parameters for GetPaymentRequestById
+type GetPaymentRequestByIdParams struct {
+	ForUserID string `json:"-"`
+	ID        string `json:"-"`
 }
 
 // CreateRefundParams contains parameters for CreateRefund

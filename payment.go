@@ -117,10 +117,12 @@ type Card struct {
 
 type CardInformation struct {
 	TokenID          string `json:"token_id"`
-	MaskedCardNumber string `json:"masked_card_number"`
+	CardNumber       string `json:"card_number,omitempty"`
+	MaskedCardNumber string `json:"masked_card_number,omitempty"`
 	ExpiryMonth      string `json:"expiry_month"`
 	ExpiryYear       string `json:"expiry_year"`
 	CardholderName   string `json:"cardholder_name,omitempty"`
+	Cvv              string `json:"cvv,omitempty"`
 	Fingerprint      string `json:"fingerprint,omitempty"`
 	Type             string `json:"type,omitempty"`
 	Network          string `json:"network"`
