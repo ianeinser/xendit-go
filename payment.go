@@ -123,6 +123,7 @@ type CardInformation struct {
 	CardholderName   string `json:"cardholder_name,omitempty"`
 	Fingerprint      string `json:"fingerprint,omitempty"`
 	Type             string `json:"type,omitempty"`
+	Network          string `json:"network"`
 	Country          string `json:"country,omitempty"`
 	Issuer           string `json:"issuer,omitempty"`
 }
