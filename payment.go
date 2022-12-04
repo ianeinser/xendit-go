@@ -116,7 +116,7 @@ type Card struct {
 }
 
 type CardInformation struct {
-	TokenId          string `json:"token_id"`
+	TokenID          string `json:"token_id"`
 	MaskedCardNumber string `json:"masked_card_number"`
 	ExpiryMonth      string `json:"expiry_month"`
 	ExpiryYear       string `json:"expiry_year"`
@@ -209,7 +209,7 @@ type Refund struct {
 	PaymentRequestID  string  `json:"payment_request_id"`
 	InvoiceID         string  `json:"invoice_id"`
 	PaymentMethodType string  `json:"payment_method_type"`
-	ReferenceId       string  `json:"reference_id"`
+	ReferenceID       string  `json:"reference_id"`
 	Status            string  `json:"status"`
 	Country           string  `json:"country"`
 	ChannelCode       string  `json:"channel_code"`
