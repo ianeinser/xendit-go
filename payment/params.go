@@ -35,8 +35,8 @@ type ListPaymentMethodsParams struct {
 	ReferenceID string  `json:"reference_id,omitempty"`
 	CustomerID  string  `json:"customer_id,omitempty"`
 	Limit       float64 `json:"limit"`
-	AfterId     string  `json:"after_id"`
-	BeforeId    string  `json:"before_id"`
+	AfterID     string  `json:"after_id"`
+	BeforeID    string  `json:"before_id"`
 }
 
 // QueryString creates query string from ListPaymentMethodsParams, ignores nil values
@@ -118,8 +118,8 @@ type ListPaymentRequestsParams struct {
 	ChannelCode string  `json:"channel_code"`
 	Status      string  `json:"status"`
 	Limit       float64 `json:"limit"`
-	AfterId     string  `json:"after_id"`
-	BeforeId    string  `json:"before_id"`
+	AfterID     string  `json:"after_id"`
+	BeforeID    string  `json:"before_id"`
 }
 
 // QueryString creates query string from ListPaymentRequestsParams, ignores nil values
