@@ -19,9 +19,9 @@ type Disbursement struct {
 	AccountHolderName       string         `json:"account_holder_name"`
 	DisbursementDescription string         `json:"disbursement_description"`
 	Status                  string         `json:"status"`
-	EmailTo                 pq.StringArray `json:"email_to,omitempty"`
-	EmailCC                 pq.StringArray `json:"email_cc,omitempty"`
-	EmailBCC                pq.StringArray `json:"email_bcc,omitempty"`
+	EmailTo                 pq.StringArray `json:"email_to,omitempty" gorm:"type:text[]"`
+	EmailCC                 pq.StringArray `json:"email_cc,omitempty" gorm:"type:text[]"`
+	EmailBCC                pq.StringArray `json:"email_bcc,omitempty" gorm:"type:text[]"`
 	IsInstant               bool           `json:"is_instant,omitempty"`
 	FailureCode             string         `json:"failure_code,omitempty"`
 }
