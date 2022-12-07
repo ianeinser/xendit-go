@@ -4,6 +4,7 @@ package xendit
 // For more details see https://xendit.github.io/apireference/?bash#customers.
 // For documentation of subpackage customer, checkout https://pkg.go.dev/github.com/ianeinser/xendit-go/customer/
 type CustomerAddress struct {
+	ReferenceID string `json:"reference_id"`
 	Country     string `json:"country" validate:"required"`
 	StreetLine1 string `json:"street_line1,omitempty"`
 	StreetLine2 string `json:"street_line2,omitempty"`
@@ -22,8 +23,8 @@ type Customer struct {
 	ID               string                 `json:"id"`
 	ReferenceID      string                 `json:"reference_id"`
 	Type             string                 `json:"type"`
-	IndividualDetail IndividualDetail       `json:"individual_detail"`
-	BusinessDetail   BusinessDetail         `json:"business_detail"`
+	IndividualDetail IndividualDetail       `json:"individual_detail" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	BusinessDetail   BusinessDetail         `json:"business_detail" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
 	MobileNumber     string                 `json:"mobile_number,omitempty"`
 	Email            string                 `json:"email,omitempty"`
 	GivenNames       string                 `json:"given_names"`
@@ -32,28 +33,31 @@ type Customer struct {
 	Description      string                 `json:"description,omitempty"`
 	PhoneNumber      string                 `json:"phone_number"`
 	Nationality      string                 `json:"nationality"`
-	Addresses        []CustomerAddress      `json:"addresses"`
+	Addresses        []CustomerAddress      `json:"addresses" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
 	DateOfBirth      string                 `json:"date_of_birth"`
 	Metadata         map[string]interface{} `json:"metadata"`
 }
 
 type Employment struct {
+	ReferenceID      string `json:"reference_id"`
 	EmployerName     string `json:"employer_name"`
 	NatureOfBusiness string `json:"nature_of_business"`
 	RoleDescription  string `json:"role_description"`
 }
 
 type IndividualDetail struct {
+	ReferenceID  string     `json:"reference_id"`
 	GivenNames   string     `json:"given_names"`
 	Surname      string     `json:"surname"`
 	Nationality  string     `json:"nationality"`
 	PlaceOfBirth string     `json:"place_of_birth"`
 	DateOfBirth  string     `json:"date_of_birth"`
 	Gender       string     `json:"gender"`
-	Employment   Employment `json:"employment"`
+	Employment   Employment `json:"employment" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
 }
 
 type BusinessDetail struct {
+	ReferenceID        string `json:"reference_id"`
 	BusinessName       string `json:"business_detail"`
 	TradingName        string `json:"trading_name"`
 	BusinessType       string `json:"business_type"`
