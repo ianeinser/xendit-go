@@ -3,6 +3,7 @@ package xendit
 import (
 	"time"
 
+	pq "github.com/lib/pq"
 	"gorm.io/datatypes"
 )
 
@@ -10,19 +11,19 @@ import (
 // For more details see https://xendit.github.io/apireference/?bash#disbursement.
 // For documentation of subpackage disbursement, checkout https://pkg.go.dev/github.com/ianeinser/xendit-go/disbursement
 type Disbursement struct {
-	ID                      string   `json:"id"`
-	UserID                  string   `json:"user_id"`
-	ExternalID              string   `json:"external_id"`
-	Amount                  float64  `json:"amount"`
-	BankCode                string   `json:"bank_code"`
-	AccountHolderName       string   `json:"account_holder_name"`
-	DisbursementDescription string   `json:"disbursement_description"`
-	Status                  string   `json:"status"`
-	EmailTo                 []string `json:"email_to,omitempty"`
-	EmailCC                 []string `json:"email_cc,omitempty"`
-	EmailBCC                []string `json:"email_bcc,omitempty"`
-	IsInstant               bool     `json:"is_instant,omitempty"`
-	FailureCode             string   `json:"failure_code,omitempty"`
+	ID                      string         `json:"id"`
+	UserID                  string         `json:"user_id"`
+	ExternalID              string         `json:"external_id"`
+	Amount                  float64        `json:"amount"`
+	BankCode                string         `json:"bank_code"`
+	AccountHolderName       string         `json:"account_holder_name"`
+	DisbursementDescription string         `json:"disbursement_description"`
+	Status                  string         `json:"status"`
+	EmailTo                 pq.StringArray `json:"email_to,omitempty"`
+	EmailCC                 pq.StringArray `json:"email_cc,omitempty"`
+	EmailBCC                pq.StringArray `json:"email_bcc,omitempty"`
+	IsInstant               bool           `json:"is_instant,omitempty"`
+	FailureCode             string         `json:"failure_code,omitempty"`
 }
 
 // DisbursementBank contains data from Xendit's API response of Get Disbursement Banks.

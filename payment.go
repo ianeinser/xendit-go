@@ -188,7 +188,7 @@ type PaymentRequest struct {
 	Status                  string                  `json:"status"`
 	Description             string                  `json:"description,omitempty"`
 	PaymentMethod           PaymentMethod2          `json:"payment_method" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	Actions                 Actions                 `json:"actions" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	Actions                 Actions2                `json:"actions" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
 	CaptureMethod           string                  `json:"capture_method"`
 	Initiator               string                  `json:"initiator"`
 	ChannelProperties       ChannelProperties       `json:"channel_properties" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
@@ -201,6 +201,7 @@ type PaymentRequest struct {
 }
 
 type ShippingInformation2 struct {
+	ReferenceID   string `json:"reference_id,omitempty"`
 	Country       string `json:"country"`
 	StreetLine1   string `json:"street_line1"`
 	StreetLine2   string `json:"street_line2"`
@@ -210,6 +211,7 @@ type ShippingInformation2 struct {
 }
 
 type CardVerificationResults struct {
+	ReferenceID               string       `json:"reference_id,omitempty"`
 	ThreeDSecure              ThreeDSecure `json:"three_d_secure" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
 	CvvResult                 string       `json:"cvv_result"`
 	AddressVerificationResult string       `json:"addres_verification_result"`
