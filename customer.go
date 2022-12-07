@@ -35,7 +35,7 @@ type Customer struct {
 	Description      string            `json:"description,omitempty"`
 	PhoneNumber      string            `json:"phone_number"`
 	Nationality      string            `json:"nationality"`
-	Addresses        []CustomerAddress `json:"addresses" gorm:"embedded;embedded_prefix:add_"`
+	Addresses        []CustomerAddress `json:"addresses" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
 	DateOfBirth      string            `json:"date_of_birth"`
 	Metadata         datatypes.JSONMap `json:"metadata"`
 }
