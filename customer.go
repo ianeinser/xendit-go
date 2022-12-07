@@ -25,8 +25,8 @@ type Customer struct {
 	ID               string            `json:"id"`
 	ReferenceID      string            `json:"reference_id"`
 	Type             string            `json:"type"`
-	IndividualDetail IndividualDetail  `json:"individual_detail" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	BusinessDetail   BusinessDetail    `json:"business_detail" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	IndividualDetail IndividualDetail  `json:"individual_detail" gorm:"embedded;embedded_prefix:id_"`
+	BusinessDetail   BusinessDetail    `json:"business_detail" gorm:"embedded;embedded_prefix:bd_"`
 	MobileNumber     string            `json:"mobile_number,omitempty"`
 	Email            string            `json:"email,omitempty"`
 	GivenNames       string            `json:"given_names"`
@@ -35,7 +35,7 @@ type Customer struct {
 	Description      string            `json:"description,omitempty"`
 	PhoneNumber      string            `json:"phone_number"`
 	Nationality      string            `json:"nationality"`
-	Addresses        []CustomerAddress `json:"addresses" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	Addresses        []CustomerAddress `json:"addresses" gorm:"embedded;embedded_prefix:add_"`
 	DateOfBirth      string            `json:"date_of_birth"`
 	Metadata         datatypes.JSONMap `json:"metadata"`
 }
@@ -55,7 +55,7 @@ type IndividualDetail struct {
 	PlaceOfBirth string     `json:"place_of_birth"`
 	DateOfBirth  string     `json:"date_of_birth"`
 	Gender       string     `json:"gender"`
-	Employment   Employment `json:"employment" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	Employment   Employment `json:"employment" gorm:"embedded;embedded_prefix:emp_"`
 }
 
 type BusinessDetail struct {

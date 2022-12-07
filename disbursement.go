@@ -58,7 +58,7 @@ type DisbursementPh struct {
 	Status              string              `json:"status"`
 	Created             *time.Time          `json:"created,omitempty"`
 	Updated             *time.Time          `json:"updated,omitempty"`
-	ReceiptNotification ReceiptNotification `json:"receipt_notification,omitempty"`
+	ReceiptNotification ReceiptNotification `json:"receipt_notification" gorm:"embedded;embedded_prefix:rn_"`
 	Metadata            datatypes.JSONMap   `json:"metadata,omitempty"`
 	FailureCode         string              `json:"failure_code,omitempty"`
 }
@@ -84,9 +84,9 @@ type Beneficiary struct {
 
 // ReceiptNotification is data that contained in Create at ReceiptNotification
 type ReceiptNotification struct {
-	EmailTo  []string `json:"email_to,omitempty"`
-	EmailCC  []string `json:"email_cc,omitempty"`
-	EmailBCC []string `json:"email_bcc,omitempty"`
+	EmailTo  pq.StringArray `json:"email_to,omitempty" gorm:"type:text[]"`
+	EmailCC  pq.StringArray `json:"email_cc,omitempty" gorm:"type:text[]"`
+	EmailBCC pq.StringArray `json:"email_bcc,omitempty" gorm:"type:text[]"`
 }
 
 // DisbursementChannel contains data from Xendit's API response of Get Disbursement Channels.
@@ -94,7 +94,7 @@ type DisbursementChannel struct {
 	ChannelCode     string       `json:"channel_code"`
 	Name            string       `json:"name"`
 	ChannelCategory string       `json:"channel_category"`
-	AmountLimits    AmountLimits `json:"amount_limits"`
+	AmountLimits    AmountLimits `json:"amount_limits" gorm:"embedded;embedded_prefix:al_"`
 	Currency        string       `json:"currency"`
 }
 

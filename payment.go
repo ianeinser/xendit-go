@@ -11,9 +11,9 @@ type Payment struct {
 	Amount            float64           `json:"amount"`
 	Country           string            `json:"country"`
 	Status            string            `json:"status"`
-	PaymentMethod     PaymentMethod2    `json:"payment_method" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	ChannelProperties ChannelProperties `json:"channel_properties,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	PaymentDetail     PaymentDetail     `json:"payment_detail,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	PaymentMethod     PaymentMethod2    `json:"payment_method" gorm:"embedded;embedded_prefix:pm_"`
+	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"embedded;embedded_prefix:cp_"`
+	PaymentDetail     PaymentDetail     `json:"payment_detail" gorm:"embedded;embedded_prefix:pd_"`
 	FailureCode       string            `json:"failure_code,omitempty"`
 	Created           string            `json:"created"`
 	Updated           string            `json:"updated"`
@@ -21,7 +21,6 @@ type Payment struct {
 }
 
 type ChannelProperties struct {
-	ReferenceID          string `json:"reference_id"`
 	RedeemPoints         string `json:"redeem_properties,omitempty"`
 	SuccessReturnUrl     string `json:"success_return_url,omitempty"`
 	FailureReturnUrl     string `json:"failure_return_url,omitempty"`
@@ -43,8 +42,7 @@ type ChannelProperties struct {
 }
 
 type PaymentDetail struct {
-	ReferenceID string `json:"reference_id"`
-	Remarks     string `json:"remarks"`
+	Remarks string `json:"remarks"`
 }
 
 type PaymentMethod2 struct {
@@ -55,41 +53,38 @@ type PaymentMethod2 struct {
 	Reusability        string             `json:"reusability"`
 	Country            string             `json:"country"`
 	Status             string             `json:"status"`
-	Actions            Actions2           `json:"actions" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	Actions            Actions2           `json:"actions" gorm:"embedded;embedded_prefix:act_"`
 	PaymentRequestID   string             `json:"payment_request_id"`
 	Currency           string             `json:"currency"`
 	Amount             float64            `json:"amount"`
 	Type               string             `json:"type"`
-	Ewallet            Ewallet            `json:"ewallet,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	DirectDebit        DirectDebit        `json:"direct_debit,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	Card               Card               `json:"card,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	OverTheCounter     OverTheCounter     `json:"over_the_counter,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	VirtualAccount     VirtualAccount2    `json:"virtual_account,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	QrCode             QrCode             `json:"qr_code,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	Ewallet            Ewallet            `json:"ewallet" gorm:"embedded;embedded_prefix:ew_"`
+	DirectDebit        DirectDebit        `json:"direct_debit" gorm:"embedded;embedded_prefix:dd_"`
+	Card               Card               `json:"card" gorm:"embedded;embedded_prefix:cd_"`
+	OverTheCounter     OverTheCounter     `json:"over_the_counter" gorm:"embedded;embedded_prefix:otc_"`
+	VirtualAccount     VirtualAccount2    `json:"virtual_account" gorm:"embedded;embedded_prefix:va_"`
+	QrCode             QrCode             `json:"qr_code" gorm:"embedded;embedded_prefix:qr_"`
 	Description        string             `json:"description,omitempty"`
-	BillingInformation BillingInformation `json:"billing_information,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	BillingInformation BillingInformation `json:"billing_information" gorm:"embedded;embedded_prefix:bi_"`
 	Created            string             `json:"created"`
 	Updated            string             `json:"updated"`
 	Metadata           datatypes.JSONMap  `json:"metadata,omitempty"`
 }
 
 type Actions2 struct {
-	ReferenceID string `json:"reference_id,omitempty"`
-	Method      string `json:"method"`
-	UrlType     string `json:"url_type"`
-	Action      string `json:"action"`
-	Url         string `json:"url"`
+	Method  string `json:"method"`
+	UrlType string `json:"url_type"`
+	Action  string `json:"action"`
+	Url     string `json:"url"`
 }
 
 type Ewallet struct {
-	ReferenceID       string            `json:"reference_id,omitempty"`
 	ChannelCode       string            `json:"channel_code"`
-	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	Account           Account2          `json:"account,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"embedded;embedded_prefix:cp_"`
+	Account           Account2          `json:"account" gorm:"embedded;embedded_prefix:acc_"`
 }
 
 type Account2 struct {
-	ReferenceID    string  `json:"reference_id,omitempty"`
 	AccountDetails string  `json:"account_details,omitempty"`
 	Name           string  `json:"name,omitempty"`
 	Balance        float64 `json:"balance,omitempty"`
@@ -97,22 +92,19 @@ type Account2 struct {
 }
 
 type DirectDebit struct {
-	ReferenceID       string            `json:"reference_id,omitempty"`
 	ChannelCode       string            `json:"channel_code"`
 	Type              string            `json:"type"`
-	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	BankAccount       BankAccount       `json:"bank_account,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	DebitCard         DebitCard         `json:"debit_account,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"embedded;embedded_prefix:cp_"`
+	BankAccount       BankAccount       `json:"bank_account" gorm:"embedded;embedded_prefix:ba_"`
+	DebitCard         DebitCard         `json:"debit_card" gorm:"embedded;embedded_prefix:dc_"`
 }
 
 type BankAccount struct {
-	ReferenceID             string `json:"reference_id,omitempty"`
 	MaskedBankAccountNumber string `json:"masked_bank_account_number,omitempty"`
 	BankAccountHash         string `json:"bank_account_hash,omitempty"`
 }
 
 type DebitCard struct {
-	ReferenceID  string `json:"reference_id,omitempty"`
 	MobileNumber string `json:"mobile_number,omitempty"`
 	CardLastFour string `json:"card_last_four,omitempty"`
 	CardExpiry   string `json:"card_expiry,omitempty"`
@@ -120,14 +112,12 @@ type DebitCard struct {
 }
 
 type Card struct {
-	ReferenceID       string            `json:"reference_id,omitempty"`
 	Currency          string            `json:"currency"`
-	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	CardInformation   CardInformation   `json:"card_information" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"embedded;embedded_prefix:cp_"`
+	CardInformation   CardInformation   `json:"card_information" gorm:"embedded;embedded_prefix:ci_"`
 }
 
 type CardInformation struct {
-	ReferenceID      string `json:"reference_id,omitempty"`
 	TokenID          string `json:"token_id"`
 	CardNumber       string `json:"card_number,omitempty"`
 	MaskedCardNumber string `json:"masked_card_number,omitempty"`
@@ -143,31 +133,27 @@ type CardInformation struct {
 }
 
 type OverTheCounter struct {
-	ReferenceID       string            `json:"reference_id,omitempty"`
 	ChannelCode       string            `json:"channel_code"`
 	Currency          string            `json:"currency"`
 	Amount            float64           `json:"amount,omitempty"`
-	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"embedded;embedded_prefix:cp_"`
 }
 
 type VirtualAccount2 struct {
-	ReferenceID       string            `json:"reference_id,omitempty"`
 	ChannelCode       string            `json:"channel_code"`
 	Currency          string            `json:"currency"`
 	Amount            float64           `json:"amount,omitempty"`
-	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"embedded;embedded_prefix:cp_"`
 }
 
 type QrCode struct {
-	ReferenceID       string            `json:"reference_id,omitempty"`
 	ChannelCode       string            `json:"channel_code"`
 	Currency          string            `json:"currency"`
 	Amount            float64           `json:"amount,omitempty"`
-	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"embedded;embedded_prefix:cp_"`
 }
 
 type BillingInformation struct {
-	ReferenceID   string `json:"reference_id,omitempty"`
 	Country       string `json:"country"`
 	StreetLine1   string `json:"street_line1"`
 	StreetLine2   string `json:"street_line2"`
@@ -187,13 +173,13 @@ type PaymentRequest struct {
 	Country                 string                  `json:"country"`
 	Status                  string                  `json:"status"`
 	Description             string                  `json:"description,omitempty"`
-	PaymentMethod           PaymentMethod2          `json:"payment_method" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	Actions                 Actions2                `json:"actions" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	PaymentMethod           PaymentMethod2          `json:"payment_method" gorm:"embedded;embedded_prefix:pm_"`
+	Actions                 Actions2                `json:"actions" gorm:"embedded;embedded_prefix:act_"`
 	CaptureMethod           string                  `json:"capture_method"`
 	Initiator               string                  `json:"initiator"`
-	ChannelProperties       ChannelProperties       `json:"channel_properties" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	ShippingInformation     ShippingInformation2    `json:"shipping_information" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	CardVerificationResults CardVerificationResults `json:"card_verification_result" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	ChannelProperties       ChannelProperties       `json:"channel_properties" gorm:"embedded;embedded_prefix:cp_"`
+	ShippingInformation     ShippingInformation2    `json:"shipping_information" gorm:"embedded;embedded_prefix:si_"`
+	CardVerificationResults CardVerificationResults `json:"card_verification_results" gorm:"embedded;embedded_prefix:cvr_"`
 	FailureCode             string                  `json:"failure_code"`
 	Created                 string                  `json:"created"`
 	Updated                 string                  `json:"updated"`
@@ -201,7 +187,6 @@ type PaymentRequest struct {
 }
 
 type ShippingInformation2 struct {
-	ReferenceID   string `json:"reference_id,omitempty"`
 	Country       string `json:"country"`
 	StreetLine1   string `json:"street_line1"`
 	StreetLine2   string `json:"street_line2"`
@@ -211,14 +196,12 @@ type ShippingInformation2 struct {
 }
 
 type CardVerificationResults struct {
-	ReferenceID               string       `json:"reference_id,omitempty"`
-	ThreeDSecure              ThreeDSecure `json:"three_d_secure" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	ThreeDSecure              ThreeDSecure `json:"three_d_secure" gorm:"embedded;embedded_prefix:tds_"`
 	CvvResult                 string       `json:"cvv_result"`
 	AddressVerificationResult string       `json:"addres_verification_result"`
 }
 
 type ThreeDSecure struct {
-	ReferenceID         string `json:"reference_id,omitempty"`
 	ThreeDSecureFlow    string `json:"three_d_Secure_flow"`
 	EciCode             string `json:"eci_code"`
 	ThreeDSecureResult  string `json:"three_d_secure_result"`
