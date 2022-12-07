@@ -171,7 +171,7 @@ type PaymentRequest struct {
 	Country                 string                  `json:"country"`
 	Status                  string                  `json:"status"`
 	Description             string                  `json:"description,omitempty"`
-	PaymentMethod           PaymentMethod           `json:"payment_method"`
+	PaymentMethod           PaymentMethod2          `json:"payment_method"`
 	Actions                 Actions                 `json:"actions"`
 	CaptureMethod           string                  `json:"capture_method"`
 	Initiator               string                  `json:"initiator"`
