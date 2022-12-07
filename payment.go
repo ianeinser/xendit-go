@@ -1,21 +1,23 @@
 package xendit
 
+import "gorm.io/datatypes"
+
 type Payment struct {
-	ID                string                 `json:"id"`
-	PaymentRequestID  string                 `json:"payment_request_id,omitempty"`
-	ReferenceID       string                 `json:"reference_id"`
-	CustomerID        string                 `json:"customer_id,omitempty"`
-	Currency          string                 `json:"currency"`
-	Amount            float64                `json:"amount"`
-	Country           string                 `json:"country"`
-	Status            string                 `json:"status"`
-	PaymentMethod     PaymentMethod2         `json:"payment_method" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	ChannelProperties ChannelProperties      `json:"channel_properties,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	PaymentDetail     PaymentDetail          `json:"payment_detail,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	FailureCode       string                 `json:"failure_code,omitempty"`
-	Created           string                 `json:"created"`
-	Updated           string                 `json:"updated"`
-	Metadata          map[string]interface{} `json:"metadata,omitempty"`
+	ID                string            `json:"id"`
+	PaymentRequestID  string            `json:"payment_request_id,omitempty"`
+	ReferenceID       string            `json:"reference_id"`
+	CustomerID        string            `json:"customer_id,omitempty"`
+	Currency          string            `json:"currency"`
+	Amount            float64           `json:"amount"`
+	Country           string            `json:"country"`
+	Status            string            `json:"status"`
+	PaymentMethod     PaymentMethod2    `json:"payment_method" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	ChannelProperties ChannelProperties `json:"channel_properties,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	PaymentDetail     PaymentDetail     `json:"payment_detail,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	FailureCode       string            `json:"failure_code,omitempty"`
+	Created           string            `json:"created"`
+	Updated           string            `json:"updated"`
+	Metadata          datatypes.JSONMap `json:"metadata,omitempty"`
 }
 
 type ChannelProperties struct {
@@ -46,29 +48,29 @@ type PaymentDetail struct {
 }
 
 type PaymentMethod2 struct {
-	ID                 string                 `json:"id"`
-	BusinessID         string                 `json:"business_id"`
-	CustomerID         string                 `json:"customer_id,omitempty"`
-	ReferenceID        string                 `json:"reference_id,omitempty"`
-	Reusability        string                 `json:"reusability"`
-	Country            string                 `json:"country"`
-	Status             string                 `json:"status"`
-	Actions            Actions2               `json:"actions" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	PaymentRequestID   string                 `json:"payment_request_id"`
-	Currency           string                 `json:"currency"`
-	Amount             float64                `json:"amount"`
-	Type               string                 `json:"type"`
-	Ewallet            Ewallet                `json:"ewallet,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	DirectDebit        DirectDebit            `json:"direct_debit,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	Card               Card                   `json:"card,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	OverTheCounter     OverTheCounter         `json:"over_the_counter,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	VirtualAccount     VirtualAccount2        `json:"virtual_account,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	QrCode             QrCode                 `json:"qr_code,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	Description        string                 `json:"description,omitempty"`
-	BillingInformation BillingInformation     `json:"billing_information,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	Created            string                 `json:"created"`
-	Updated            string                 `json:"updated"`
-	Metadata           map[string]interface{} `json:"metadata,omitempty"`
+	ID                 string             `json:"id"`
+	BusinessID         string             `json:"business_id"`
+	CustomerID         string             `json:"customer_id,omitempty"`
+	ReferenceID        string             `json:"reference_id,omitempty"`
+	Reusability        string             `json:"reusability"`
+	Country            string             `json:"country"`
+	Status             string             `json:"status"`
+	Actions            Actions2           `json:"actions" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	PaymentRequestID   string             `json:"payment_request_id"`
+	Currency           string             `json:"currency"`
+	Amount             float64            `json:"amount"`
+	Type               string             `json:"type"`
+	Ewallet            Ewallet            `json:"ewallet,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	DirectDebit        DirectDebit        `json:"direct_debit,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	Card               Card               `json:"card,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	OverTheCounter     OverTheCounter     `json:"over_the_counter,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	VirtualAccount     VirtualAccount2    `json:"virtual_account,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	QrCode             QrCode             `json:"qr_code,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	Description        string             `json:"description,omitempty"`
+	BillingInformation BillingInformation `json:"billing_information,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	Created            string             `json:"created"`
+	Updated            string             `json:"updated"`
+	Metadata           datatypes.JSONMap  `json:"metadata,omitempty"`
 }
 
 type Actions2 struct {
@@ -195,7 +197,7 @@ type PaymentRequest struct {
 	FailureCode             string                  `json:"failure_code"`
 	Created                 string                  `json:"created"`
 	Updated                 string                  `json:"updated"`
-	Metadata                map[string]interface{}  `json:"metadata,omitempty"`
+	Metadata                datatypes.JSONMap       `json:"metadata,omitempty"`
 }
 
 type ShippingInformation2 struct {

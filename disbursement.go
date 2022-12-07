@@ -1,6 +1,10 @@
 package xendit
 
-import "time"
+import (
+	"time"
+
+	"gorm.io/datatypes"
+)
 
 // Disbursement contains data from Xendit's API response of disbursement related requests.
 // For more details see https://xendit.github.io/apireference/?bash#disbursement.
@@ -44,18 +48,18 @@ type BatchDisbursement struct {
 // For more details see https://docs.google.com/document/d/1eK7rt6AwMZHcAN1wxgqhsesQ_im35t2Q9iuM7bOXI04/edit#.
 // For documentation of subpackage disbursement, checkout https://pkg.go.dev/github.com/ianeinser/xendit-go/disbursement
 type DisbursementPh struct {
-	ID                  string                 `json:"id"`
-	ReferenceID         string                 `json:"reference_id"`
-	Currency            string                 `json:"currency"`
-	Amount              float64                `json:"amount"`
-	ChannelCode         string                 `json:"channel_code"`
-	Description         string                 `json:"description"`
-	Status              string                 `json:"status"`
-	Created             *time.Time             `json:"created,omitempty"`
-	Updated             *time.Time             `json:"updated,omitempty"`
-	ReceiptNotification ReceiptNotification    `json:"receipt_notification,omitempty"`
-	Metadata            map[string]interface{} `json:"metadata,omitempty"`
-	FailureCode         string                 `json:"failure_code,omitempty"`
+	ID                  string              `json:"id"`
+	ReferenceID         string              `json:"reference_id"`
+	Currency            string              `json:"currency"`
+	Amount              float64             `json:"amount"`
+	ChannelCode         string              `json:"channel_code"`
+	Description         string              `json:"description"`
+	Status              string              `json:"status"`
+	Created             *time.Time          `json:"created,omitempty"`
+	Updated             *time.Time          `json:"updated,omitempty"`
+	ReceiptNotification ReceiptNotification `json:"receipt_notification,omitempty"`
+	Metadata            datatypes.JSONMap   `json:"metadata,omitempty"`
+	FailureCode         string              `json:"failure_code,omitempty"`
 }
 
 // Beneficiary is data that contained in Create at Beneficiary
