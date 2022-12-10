@@ -26,6 +26,42 @@ type CreateCustomerParams struct {
 	Metadata               map[string]interface{}   `json:"metadata,omitempty"`
 }
 
+type CreateCustomerIndividualParams struct {
+	IdempotencyKey         string                   `json:"-"`
+	ForUserID              string                   `json:"-"`
+	APIVersion             string                   `json:"-"`
+	ReferenceID            string                   `json:"reference_id" validate:"required"`
+	Type                   string                   `json:"type"`
+	IndividualDetail       xendit.IndividualDetail  `json:"individual_detail,omitempty"`
+	MobileNumber           string                   `json:"mobile_number,omitempty"`
+	PhoneNumber            string                   `json:"phone_number,omitempty"`
+	HashedPhoneNumber      string                   `json:"hashed_phone_number"`
+	Email                  string                   `json:"email,omitempty"`
+	Addresses              []xendit.CustomerAddress `json:"addresses,omitempty"`
+	Description            string                   `json:"description,omitempty"`
+	DateOfRegistration     string                   `json:"date_of_registration"`
+	DomicileofRegistration string                   `json:"domicile_of_registration"`
+	Metadata               map[string]interface{}   `json:"metadata,omitempty"`
+}
+
+type CreateCustomerBusinessParams struct {
+	IdempotencyKey         string                   `json:"-"`
+	ForUserID              string                   `json:"-"`
+	APIVersion             string                   `json:"-"`
+	ReferenceID            string                   `json:"reference_id" validate:"required"`
+	Type                   string                   `json:"type"`
+	BusinessDetail         xendit.BusinessDetail    `json:"business_detail,omitempty"`
+	MobileNumber           string                   `json:"mobile_number,omitempty"`
+	PhoneNumber            string                   `json:"phone_number,omitempty"`
+	HashedPhoneNumber      string                   `json:"hashed_phone_number"`
+	Email                  string                   `json:"email,omitempty"`
+	Addresses              []xendit.CustomerAddress `json:"addresses,omitempty"`
+	Description            string                   `json:"description,omitempty"`
+	DateOfRegistration     string                   `json:"date_of_registration"`
+	DomicileofRegistration string                   `json:"domicile_of_registration"`
+	Metadata               map[string]interface{}   `json:"metadata,omitempty"`
+}
+
 // GetCustomerByReferenceIDParams contains parameters for GetCustomerByReferenceID
 type GetCustomerByCustomerIDParams struct {
 	CustomerID string `json:"-"`

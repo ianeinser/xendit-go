@@ -4,9 +4,11 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/ianeinser/xendit-go"
 	"github.com/ianeinser/xendit-go/utils/validator"
+	"github.com/mitchellh/mapstructure"
 )
 
 // Client is the client used to invoke customer API.
@@ -39,13 +41,27 @@ func (c *Client) CreateCustomerWithContext(ctx context.Context, data *CreateCust
 		header.Add("idempotency-key", data.IdempotencyKey)
 	}
 
+	var d interface{}
+
+	if strings.ToUpper(data.Type) == "INDIVIDUAL" {
+		params := CreateCustomerIndividualParams{}
+		mapstructure.Decode(&data, &params)
+		d = params
+	}
+
+	if strings.ToUpper(data.Type) == "BUSINESS" {
+		params := CreateCustomerBusinessParams{}
+		mapstructure.Decode(&data, &params)
+		d = params
+	}
+
 	err := c.APIRequester.Call(
 		ctx,
 		"POST",
 		fmt.Sprintf("%s/customers", c.Opt.XenditURL),
 		c.Opt.SecretKey,
 		header,
-		data,
+		d,
 		response,
 	)
 	if err != nil {
