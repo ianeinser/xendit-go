@@ -8,7 +8,7 @@ import (
 
 // CreateCustomerParams contains parameters for CreateCustomer
 type CreateCustomerParams struct {
-	IdempotencyKey         string                   `json:"idempotency_key"`
+	IdempotencyKey         string                   `json:"-"`
 	ForUserID              string                   `json:"-"`
 	APIVersion             string                   `json:"-"`
 	ReferenceID            string                   `json:"reference_id" validate:"required"`
