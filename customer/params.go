@@ -13,8 +13,8 @@ type CreateCustomerParams struct {
 	APIVersion             string                   `json:"-"`
 	ReferenceID            string                   `json:"reference_id" validate:"required"`
 	Type                   string                   `json:"type"`
-	IndividualDetail       xendit.IndividualDetail  `json:"individual_detail"`
-	BusinessDetail         xendit.BusinessDetail    `json:"business_detail"`
+	IndividualDetail       xendit.IndividualDetail  `json:"individual_detail,omitempty"`
+	BusinessDetail         xendit.BusinessDetail    `json:"business_detail,omitempty"`
 	MobileNumber           string                   `json:"mobile_number,omitempty"`
 	PhoneNumber            string                   `json:"phone_number,omitempty"`
 	HashedPhoneNumber      string                   `json:"hashed_phone_number"`
