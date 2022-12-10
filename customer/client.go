@@ -45,13 +45,13 @@ func (c *Client) CreateCustomerWithContext(ctx context.Context, data *CreateCust
 
 	if strings.ToUpper(data.Type) == "INDIVIDUAL" {
 		params := CreateCustomerIndividualParams{}
-		mapstructure.Decode(&data, &params)
+		mapstructure.Decode(data, &params)
 		d = params
 	}
 
 	if strings.ToUpper(data.Type) == "BUSINESS" {
 		params := CreateCustomerBusinessParams{}
-		mapstructure.Decode(&data, &params)
+		mapstructure.Decode(data, &params)
 		d = params
 	}
 
