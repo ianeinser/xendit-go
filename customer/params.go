@@ -64,6 +64,8 @@ type CreateCustomerBusinessParams struct {
 
 // GetCustomerByReferenceIDParams contains parameters for GetCustomerByReferenceID
 type GetCustomerByCustomerIDParams struct {
+	ForUserID  string `json:"-"`
+	APIVersion string `json:"-"`
 	CustomerID string `json:"-"`
 }
 
@@ -78,6 +80,8 @@ func (p *GetCustomerByCustomerIDParams) QueryString() string {
 
 // GetCustomerByReferenceIDParams contains parameters for GetCustomerByReferenceID
 type GetCustomerByReferenceIDParams struct {
+	ForUserID   string `json:"-"`
+	APIVersion  string `json:"-"`
 	ReferenceID string `json:"-"`
 }
 

@@ -84,6 +84,14 @@ func (c *Client) GetCustomerByCustomerIDWithContext(ctx context.Context, data *G
 
 	response := []xendit.Customer{}
 	var queryString string
+	header := http.Header{}
+
+	if data.ForUserID != "" {
+		header.Add("for-user-id", data.ForUserID)
+	}
+	if data.APIVersion != "" {
+		header.Add("api-version", data.APIVersion)
+	}
 
 	if data != nil {
 		queryString = data.QueryString()
@@ -118,6 +126,14 @@ func (c *Client) GetCustomerByReferenceIDWithContext(ctx context.Context, data *
 
 	response := []xendit.Customer{}
 	var queryString string
+	header := http.Header{}
+
+	if data.ForUserID != "" {
+		header.Add("for-user-id", data.ForUserID)
+	}
+	if data.APIVersion != "" {
+		header.Add("api-version", data.APIVersion)
+	}
 
 	if data != nil {
 		queryString = data.QueryString()
