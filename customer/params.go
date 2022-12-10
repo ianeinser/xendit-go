@@ -99,8 +99,8 @@ type UpdateCustomerParams struct {
 	ForUserID        string                   `json:"-"`
 	APIVersion       string                   `json:"-"`
 	CustomerID       string                   `json:"-"`
-	IndividualDetail xendit.IndividualDetail  `json:"individual_detail"`
-	BusinessDetail   xendit.BusinessDetail    `json:"business_detail"`
+	IndividualDetail xendit.IndividualDetail  `json:"individual_detail,omitempty"`
+	BusinessDetail   xendit.BusinessDetail    `json:"business_detail,omitempty"`
 	MobileNumber     string                   `json:"mobile_number"`
 	Email            string                   `json:"email,omitempty"`
 	Addresses        []xendit.CustomerAddress `json:"addresses,omitempty"`
