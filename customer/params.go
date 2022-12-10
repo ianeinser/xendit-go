@@ -22,7 +22,7 @@ type CreateCustomerParams struct {
 	Addresses              []xendit.CustomerAddress `json:"addresses,omitempty"`
 	Description            string                   `json:"description,omitempty"`
 	DateOfRegistration     string                   `json:"date_of_registration"`
-	DomicileofRegistration string                   `json:"domicile_of_registration"`
+	DomicileOfRegistration string                   `json:"domicile_of_registration"`
 	Metadata               map[string]interface{}   `json:"metadata,omitempty"`
 }
 
@@ -40,7 +40,7 @@ type CreateCustomerIndividualParams struct {
 	Addresses              []xendit.CustomerAddress `json:"addresses,omitempty"`
 	Description            string                   `json:"description,omitempty"`
 	DateOfRegistration     string                   `json:"date_of_registration"`
-	DomicileofRegistration string                   `json:"domicile_of_registration"`
+	DomicileOfRegistration string                   `json:"domicile_of_registration"`
 	Metadata               map[string]interface{}   `json:"metadata,omitempty"`
 }
 
@@ -58,7 +58,7 @@ type CreateCustomerBusinessParams struct {
 	Addresses              []xendit.CustomerAddress `json:"addresses,omitempty"`
 	Description            string                   `json:"description,omitempty"`
 	DateOfRegistration     string                   `json:"date_of_registration"`
-	DomicileofRegistration string                   `json:"domicile_of_registration"`
+	DomicileOfRegistration string                   `json:"domicile_of_registration"`
 	Metadata               map[string]interface{}   `json:"metadata,omitempty"`
 }
 
