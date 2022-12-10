@@ -98,10 +98,20 @@ func (p *GetCustomerByReferenceIDParams) QueryString() string {
 type UpdateCustomerParams struct {
 	ForUserID        string                   `json:"-"`
 	APIVersion       string                   `json:"-"`
+	CustomerID       string                   `json:"-"`
 	IndividualDetail xendit.IndividualDetail  `json:"individual_detail"`
 	BusinessDetail   xendit.BusinessDetail    `json:"business_detail"`
 	MobileNumber     string                   `json:"mobile_number"`
 	Email            string                   `json:"email,omitempty"`
 	Addresses        []xendit.CustomerAddress `json:"addresses,omitempty"`
 	Metadata         map[string]interface{}   `json:"metadata,omitempty"`
+}
+
+// QueryString creates query string from GetCustomerByReferenceIDParams, ignores nil values
+func (p *UpdateCustomerParams) QueryString() string {
+	urlValues := &url.Values{}
+
+	urlValues.Add("", p.CustomerID)
+
+	return urlValues.Encode()
 }

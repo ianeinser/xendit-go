@@ -171,7 +171,7 @@ func (c *Client) UpdateCustomerWithContext(ctx context.Context, data *UpdateCust
 	var queryString string
 
 	if data != nil {
-		queryString = data.Metadata["customer_id"].(string)
+		queryString = data.QueryString()
 	}
 
 	if data.ForUserID != "" {
