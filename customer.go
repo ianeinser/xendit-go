@@ -41,14 +41,12 @@ type Customer struct {
 }
 
 type Employment struct {
-	ReferenceID      string `json:"reference_id"`
 	EmployerName     string `json:"employer_name"`
 	NatureOfBusiness string `json:"nature_of_business"`
 	RoleDescription  string `json:"role_description"`
 }
 
 type IndividualDetail struct {
-	ReferenceID  string     `json:"reference_id"`
 	GivenNames   string     `json:"given_names"`
 	Surname      string     `json:"surname"`
 	Nationality  string     `json:"nationality"`
@@ -59,7 +57,6 @@ type IndividualDetail struct {
 }
 
 type BusinessDetail struct {
-	ReferenceID        string `json:"reference_id"`
 	BusinessName       string `json:"business_detail"`
 	TradingName        string `json:"trading_name"`
 	BusinessType       string `json:"business_type"`

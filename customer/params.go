@@ -8,10 +8,11 @@ import (
 
 // CreateCustomerParams contains parameters for CreateCustomer
 type CreateCustomerParams struct {
+	IdempotencyKey         string                   `json:"idempotency_key"`
 	ForUserID              string                   `json:"-"`
 	APIVersion             string                   `json:"-"`
 	ReferenceID            string                   `json:"reference_id" validate:"required"`
-	Type                   string                   `json:"string"`
+	Type                   string                   `json:"type"`
 	IndividualDetail       xendit.IndividualDetail  `json:"individual_detail"`
 	BusinessDetail         xendit.BusinessDetail    `json:"business_detail"`
 	MobileNumber           string                   `json:"mobile_number,omitempty"`

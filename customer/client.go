@@ -35,6 +35,9 @@ func (c *Client) CreateCustomerWithContext(ctx context.Context, data *CreateCust
 	if data.APIVersion != "" {
 		header.Add("api-version", data.APIVersion)
 	}
+	if data.IdempotencyKey != "" {
+		header.Add("idempotency-key", data.IdempotencyKey)
+	}
 
 	err := c.APIRequester.Call(
 		ctx,
