@@ -22,22 +22,18 @@ type CustomerAddress struct {
 // For more details see https://xendit.github.io/apireference/?bash#customers.
 // For documentation of subpackage customer, checkout https://pkg.go.dev/github.com/ianeinser/xendit-go/customer/
 type Customer struct {
-	ID               string            `json:"id"`
-	ReferenceID      string            `json:"reference_id"`
-	Type             string            `json:"type"`
-	IndividualDetail IndividualDetail  `json:"individual_detail" gorm:"embedded;embedded_prefix:id_"`
-	BusinessDetail   BusinessDetail    `json:"business_detail" gorm:"embedded;embedded_prefix:bd_"`
-	MobileNumber     string            `json:"mobile_number,omitempty"`
-	Email            string            `json:"email,omitempty"`
-	GivenNames       string            `json:"given_names"`
-	MiddleName       string            `json:"middle_name"`
-	Surname          string            `json:"surname"`
-	Description      string            `json:"description,omitempty"`
-	PhoneNumber      string            `json:"phone_number"`
-	Nationality      string            `json:"nationality"`
-	Addresses        []CustomerAddress `json:"addresses" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
-	DateOfBirth      string            `json:"date_of_birth"`
-	Metadata         datatypes.JSONMap `json:"metadata"`
+	ID                string            `json:"id"`
+	ReferenceID       string            `json:"reference_id"`
+	Type              string            `json:"type"`
+	IndividualDetail  IndividualDetail  `json:"individual_detail" gorm:"embedded;embedded_prefix:id_"`
+	BusinessDetail    BusinessDetail    `json:"business_detail" gorm:"embedded;embedded_prefix:bd_"`
+	MobileNumber      string            `json:"mobile_number,omitempty"`
+	Email             string            `json:"email,omitempty"`
+	Description       string            `json:"description,omitempty"`
+	PhoneNumber       string            `json:"phone_number"`
+	HashedPhoneNumber string            `json:"hashed_phone_number"`
+	Addresses         []CustomerAddress `json:"addresses" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	Metadata          datatypes.JSONMap `json:"metadata"`
 }
 
 type Employment struct {
