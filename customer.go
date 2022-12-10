@@ -53,8 +53,7 @@ type IndividualDetail struct {
 }
 
 type BusinessDetail struct {
-	BusinessName       string `json:"business_detail"`
-	TradingName        string `json:"trading_name"`
+	BusinessName       string `json:"business_name"`
 	BusinessType       string `json:"business_type"`
 	NatureOfBusiness   string `json:"nature_of_business"`
 	BusinessDomicile   string `json:"business_domicile"`
