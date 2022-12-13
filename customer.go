@@ -6,6 +6,7 @@ import "gorm.io/datatypes"
 // For more details see https://xendit.github.io/apireference/?bash#customers.
 // For documentation of subpackage customer, checkout https://pkg.go.dev/github.com/ianeinser/xendit-go/customer/
 type CustomerAddress struct {
+	ReferenceID string `json:"reference_id"`
 	Country     string `json:"country" validate:"required"`
 	StreetLine1 string `json:"street_line1,omitempty"`
 	StreetLine2 string `json:"street_line2,omitempty"`
