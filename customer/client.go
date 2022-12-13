@@ -84,7 +84,7 @@ func (c *Client) CreateCustomerWithContext(ctx context.Context, data *map[string
 
 	idk := fmt.Sprintf("%v", (*data)["IdempotencyKey"])
 	api := fmt.Sprintf("%v", (*data)["APIVersion"])
-	fID := fmt.Sprintf("%v", (*data)["ForUserID"])
+	//fID := fmt.Sprintf("%v", (*data)["ForUserID"])
 
 	if idk != "" {
 		header.Add("idempotency-key", idk)
@@ -94,9 +94,11 @@ func (c *Client) CreateCustomerWithContext(ctx context.Context, data *map[string
 		header.Add("api-version", api)
 	}
 
-	if fID != "" {
-		header.Add("for-user-id", fID)
-	}
+	/*
+		if fID != "" {
+			header.Add("for-user-id", fID)
+		}
+	*/
 
 	err := c.APIRequester.Call(
 		ctx,
@@ -254,7 +256,7 @@ func (c *Client) UpdateCustomerWithContext(ctx context.Context, data *map[string
 	header := http.Header{}
 
 	api := fmt.Sprintf("%v", (*data)["APIVersion"])
-	fID := fmt.Sprintf("%v", (*data)["ForUserID"])
+	//fID := fmt.Sprintf("%v", (*data)["ForUserID"])
 	queryString := ""
 
 	if data != nil {
@@ -265,9 +267,11 @@ func (c *Client) UpdateCustomerWithContext(ctx context.Context, data *map[string
 		header.Add("api-version", api)
 	}
 
-	if fID != "" {
-		header.Add("for-user-id", fID)
-	}
+	/*
+		if fID != "" {
+			header.Add("for-user-id", fID)
+		}
+	*/
 
 	err := c.APIRequester.Call(
 		ctx,
