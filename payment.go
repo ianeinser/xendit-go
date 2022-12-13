@@ -53,7 +53,7 @@ type PaymentMethod2 struct {
 	Reusability        string             `json:"reusability"`
 	Country            string             `json:"country"`
 	Status             string             `json:"status"`
-	Actions            []Actions2         `json:"actions,omitempty" gorm:"embedded;embedded_prefix:act_"`
+	Actions            []Actions2         `json:"actions,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
 	PaymentRequestID   string             `json:"payment_request_id"`
 	Currency           string             `json:"currency"`
 	Amount             float64            `json:"amount"`
@@ -72,10 +72,11 @@ type PaymentMethod2 struct {
 }
 
 type Actions2 struct {
-	Method  string `json:"method,omitempty"`
-	UrlType string `json:"url_type,omitempty"`
-	Action  string `json:"action,omitempty"`
-	Url     string `json:"url,omitempty"`
+	ReferenceID string `json:"-"`
+	Method      string `json:"method,omitempty"`
+	UrlType     string `json:"url_type,omitempty"`
+	Action      string `json:"action,omitempty"`
+	Url         string `json:"url,omitempty"`
 }
 
 type Ewallet struct {
