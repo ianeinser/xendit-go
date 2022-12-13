@@ -4,11 +4,9 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"strings"
 
 	"github.com/ianeinser/xendit-go"
 	"github.com/ianeinser/xendit-go/utils/validator"
-	"github.com/mitchellh/mapstructure"
 )
 
 // Client is the client used to invoke customer API.
@@ -17,6 +15,7 @@ type Client struct {
 	APIRequester xendit.APIRequester
 }
 
+/*
 // CreateCustomer creates new customer
 func (c *Client) CreateCustomer(data *CreateCustomerParams) (*xendit.Customer, *xendit.Error) {
 	return c.CreateCustomerWithContext(context.Background(), data)
@@ -62,6 +61,53 @@ func (c *Client) CreateCustomerWithContext(ctx context.Context, data *CreateCust
 		c.Opt.SecretKey,
 		header,
 		d,
+		response,
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	return response, nil
+}
+*/
+
+// CreateCustomer creates new customer
+func (c *Client) CreateCustomer(data *map[string]interface{}) (*xendit.Customer, *xendit.Error) {
+	return c.CreateCustomerWithContext(context.Background(), data)
+}
+
+// CreateCustomerWithContext creates new customer
+func (c *Client) CreateCustomerWithContext(ctx context.Context, data *map[string]interface{}) (*xendit.Customer, *xendit.Error) {
+	if err := validator.ValidateRequired(ctx, data); err != nil {
+		return nil, validator.APIValidatorErr(err)
+	}
+
+	response := &xendit.Customer{}
+	header := http.Header{}
+
+	idk := fmt.Sprintf("%v", (*data)["IdempotencyKey"])
+	api := fmt.Sprintf("%v", (*data)["APIVersion"])
+	fID := fmt.Sprintf("%v", (*data)["ForUserID"])
+
+	if idk != "" {
+		header.Add("idempotency-key", idk)
+	}
+
+	if api != "" {
+		header.Add("api-version", api)
+	}
+
+	if fID != "" {
+		header.Add("for-user-id", fID)
+	}
+
+	err := c.APIRequester.Call(
+		ctx,
+		"POST",
+		fmt.Sprintf("%s/customers", c.Opt.XenditURL),
+		c.Opt.SecretKey,
+		header,
+		*data,
 		response,
 	)
 	if err != nil {
@@ -155,6 +201,7 @@ func (c *Client) GetCustomerByReferenceIDWithContext(ctx context.Context, data *
 	return &response, nil
 }
 
+/*
 // UpdateCustomer updates the details on a customer
 func (c *Client) UpdateCustomer(data *UpdateCustomerParams) (*xendit.Customer, *xendit.Error) {
 	return c.UpdateCustomerWithContext(context.Background(), data)
@@ -188,6 +235,53 @@ func (c *Client) UpdateCustomerWithContext(ctx context.Context, data *UpdateCust
 		c.Opt.SecretKey,
 		header,
 		data,
+		response,
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	return response, nil
+}
+*/
+
+// UpdateCustomer updates the details on a customer
+func (c *Client) UpdateCustomer(data *map[string]interface{}) (*xendit.Customer, *xendit.Error) {
+	return c.UpdateCustomerWithContext(context.Background(), data)
+}
+
+// UpdateCustomerWithContext updates the details on a customer
+func (c *Client) UpdateCustomerWithContext(ctx context.Context, data *map[string]interface{}) (*xendit.Customer, *xendit.Error) {
+	if err := validator.ValidateRequired(ctx, data); err != nil {
+		return nil, validator.APIValidatorErr(err)
+	}
+
+	response := &xendit.Customer{}
+	header := http.Header{}
+
+	api := fmt.Sprintf("%v", (*data)["APIVersion"])
+	fID := fmt.Sprintf("%v", (*data)["ForUserID"])
+	queryString := ""
+
+	if data != nil {
+		queryString = fmt.Sprintf("%v", (*data)["CustomerID"])
+	}
+
+	if api != "" {
+		header.Add("api-version", api)
+	}
+
+	if fID != "" {
+		header.Add("for-user-id", fID)
+	}
+
+	err := c.APIRequester.Call(
+		ctx,
+		"PATCH",
+		fmt.Sprintf("%s/customers/%s", c.Opt.XenditURL, queryString),
+		c.Opt.SecretKey,
+		header,
+		*data,
 		response,
 	)
 	if err != nil {

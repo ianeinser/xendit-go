@@ -6,6 +6,7 @@ import (
 	"github.com/ianeinser/xendit-go"
 )
 
+/*
 // CreateCustomer creates new customer
 func CreateCustomer(data *CreateCustomerParams) (*xendit.Customer, *xendit.Error) {
 	return CreateCustomerWithContext(context.Background(), data)
@@ -13,6 +14,22 @@ func CreateCustomer(data *CreateCustomerParams) (*xendit.Customer, *xendit.Error
 
 // CreateCustomerWithContext creates new payment
 func CreateCustomerWithContext(ctx context.Context, data *CreateCustomerParams) (*xendit.Customer, *xendit.Error) {
+	client, err := getClient()
+	if err != nil {
+		return nil, err
+	}
+
+	return client.CreateCustomerWithContext(ctx, data)
+}
+*/
+
+// CreateCustomer creates new customer
+func CreateCustomer(data *map[string]interface{}) (*xendit.Customer, *xendit.Error) {
+	return CreateCustomerWithContext(context.Background(), data)
+}
+
+// CreateCustomerWithContext creates new payment
+func CreateCustomerWithContext(ctx context.Context, data *map[string]interface{}) (*xendit.Customer, *xendit.Error) {
 	client, err := getClient()
 	if err != nil {
 		return nil, err
@@ -51,6 +68,7 @@ func GetCustomerByReferenceIDWithContext(ctx context.Context, data *GetCustomerB
 	return client.GetCustomerByReferenceIDWithContext(ctx, data)
 }
 
+/*
 // UpdateCustomer updates the details on a customer
 func UpdateCustomer(data *UpdateCustomerParams) (*xendit.Customer, *xendit.Error) {
 	return UpdateCustomerWithContext(context.Background(), data)
@@ -58,6 +76,22 @@ func UpdateCustomer(data *UpdateCustomerParams) (*xendit.Customer, *xendit.Error
 
 // UpdateCustomerWithContext updates the details on a customer
 func UpdateCustomerWithContext(ctx context.Context, data *UpdateCustomerParams) (*xendit.Customer, *xendit.Error) {
+	client, err := getClient()
+	if err != nil {
+		return nil, err
+	}
+
+	return client.UpdateCustomerWithContext(ctx, data)
+}
+*/
+
+// UpdateCustomer updates the details on a customer
+func UpdateCustomer(data *map[string]interface{}) (*xendit.Customer, *xendit.Error) {
+	return UpdateCustomerWithContext(context.Background(), data)
+}
+
+// UpdateCustomerWithContext updates the details on a customer
+func UpdateCustomerWithContext(ctx context.Context, data *map[string]interface{}) (*xendit.Customer, *xendit.Error) {
 	client, err := getClient()
 	if err != nil {
 		return nil, err
