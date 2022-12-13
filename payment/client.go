@@ -65,12 +65,15 @@ func (c *Client) CreatePaymentMethodWithContext(ctx context.Context, data *map[s
 	response := &xendit.PaymentMethod2{}
 	header := http.Header{}
 
-	if (*data)["IdempotencyKey"] != "" {
-		header.Add("idempotency-key", fmt.Sprintf("%v", (*data)["IdempotencyKey"]))
+	idk := fmt.Sprintf("%v", (*data)["IdempotencyKey"])
+	fID := fmt.Sprintf("%v", (*data)["ForUserID"])
+
+	if idk != "" {
+		header.Add("idempotency-key", idk)
 	}
 
-	if (*data)["ForUserID"] != "" {
-		header.Add("for-user-id", fmt.Sprintf("%v", (*data)["ForUserID"]))
+	if fID != "" {
+		header.Add("for-user-id", fID)
 	}
 
 	err := c.APIRequester.Call(
@@ -261,12 +264,15 @@ func (c *Client) CreatePaymentRequestWithContext(ctx context.Context, data *map[
 	response := &xendit.PaymentRequest{}
 	header := http.Header{}
 
-	if (*data)["IdempotencyKey"] != "" {
-		header.Add("idempotency-key", fmt.Sprintf("%v", (*data)["IdempotencyKey"]))
+	idk := fmt.Sprintf("%v", (*data)["IdempotencyKey"])
+	fID := fmt.Sprintf("%v", (*data)["ForUserID"])
+
+	if idk != "" {
+		header.Add("idempotency-key", idk)
 	}
 
-	if (*data)["ForUserID"] != "" {
-		header.Add("for-user-id", fmt.Sprintf("%v", (*data)["ForUserID"]))
+	if fID != "" {
+		header.Add("for-user-id", fID)
 	}
 
 	err := c.APIRequester.Call(
@@ -410,12 +416,15 @@ func (c *Client) CreateRefundWithContext(ctx context.Context, data *map[string]i
 	response := &xendit.Refund{}
 	header := http.Header{}
 
-	if (*data)["IdempotencyKey"] != "" {
-		header.Add("idempotency-key", fmt.Sprintf("%v", (*data)["IdempotencyKey"]))
+	idk := fmt.Sprintf("%v", (*data)["IdempotencyKey"])
+	fID := fmt.Sprintf("%v", (*data)["ForUserID"])
+
+	if idk != "" {
+		header.Add("idempotency-key", idk)
 	}
 
-	if (*data)["ForUserID"] != "" {
-		header.Add("for-user-id", fmt.Sprintf("%v", (*data)["ForUserID"]))
+	if fID != "" {
+		header.Add("for-user-id", fID)
 	}
 
 	err := c.APIRequester.Call(
