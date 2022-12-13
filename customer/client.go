@@ -99,10 +99,10 @@ func (c *Client) CreateCustomerWithContext(ctx context.Context, data *map[string
 		header.Add("idempotency-key", idk)
 	}
 
-	header.Add("api-version", APIVersion)
+	header.Add("api-version", fmt.Sprintf("%s", APIVersion))
 
 	if (*data)["ForUserID"] != nil {
-		header.Add("for-user-id", fmt.Sprintf("%v", (*data)["ForUserID"]))
+		header.Add("for-user-id", fmt.Sprintf("%s", (*data)["ForUserID"]))
 	}
 
 	fmt.Printf("Header %+v\n", header)
@@ -265,13 +265,13 @@ func (c *Client) UpdateCustomerWithContext(ctx context.Context, data *map[string
 	queryString := ""
 
 	if data != nil {
-		queryString = fmt.Sprintf("%v", (*data)["CustomerID"])
+		queryString = fmt.Sprintf("%s", (*data)["CustomerID"])
 	}
 
-	header.Add("api-version", APIVersion)
+	header.Add("api-version", fmt.Sprintf("%s", APIVersion))
 
 	if (*data)["ForUserID"] != nil {
-		header.Add("for-user-id", fmt.Sprintf("%v", (*data)["ForUserID"]))
+		header.Add("for-user-id", fmt.Sprintf("%s", (*data)["ForUserID"]))
 	}
 
 	fmt.Printf("Header %+v\n", header)

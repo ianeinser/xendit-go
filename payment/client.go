@@ -79,7 +79,7 @@ func (c *Client) CreatePaymentMethodWithContext(ctx context.Context, data *map[s
 	}
 
 	if (*data)["ForUserID"] != nil {
-		header.Add("for-user-id", fmt.Sprintf("%v", (*data)["ForUserID"]))
+		header.Add("for-user-id", fmt.Sprintf("%s", (*data)["ForUserID"]))
 	}
 
 	fmt.Printf("Header %+v\n", header)
@@ -279,7 +279,7 @@ func (c *Client) CreatePaymentRequestWithContext(ctx context.Context, data *map[
 	}
 
 	if (*data)["ForUserID"] != nil {
-		header.Add("for-user-id", fmt.Sprintf("%v", (*data)["ForUserID"]))
+		header.Add("for-user-id", fmt.Sprintf("%s", (*data)["ForUserID"]))
 	}
 
 	fmt.Printf("Header %+v\n", header)
@@ -432,7 +432,7 @@ func (c *Client) CreateRefundWithContext(ctx context.Context, data *map[string]i
 	}
 
 	if (*data)["ForUserID"] != nil {
-		header.Add("for-user-id", fmt.Sprintf("%v", (*data)["ForUserID"]))
+		header.Add("for-user-id", fmt.Sprintf("%s", (*data)["ForUserID"]))
 	}
 
 	fmt.Printf("Header %+v\n", header)
