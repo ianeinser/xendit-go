@@ -82,6 +82,8 @@ func (c *Client) CreateCustomerWithContext(ctx context.Context, data *map[string
 	response := &xendit.Customer{}
 	header := http.Header{}
 
+	fmt.Printf("data: %+v", *data)
+
 	idk := fmt.Sprintf("%v", (*data)["IdempotencyKey"])
 	api := fmt.Sprintf("%v", (*data)["APIVersion"])
 	fID := fmt.Sprintf("%v", (*data)["ForUserID"])
@@ -256,6 +258,8 @@ func (c *Client) UpdateCustomerWithContext(ctx context.Context, data *map[string
 
 	response := &xendit.Customer{}
 	header := http.Header{}
+
+	fmt.Printf("data: %+v", *data)
 
 	api := fmt.Sprintf("%v", (*data)["APIVersion"])
 	fID := fmt.Sprintf("%v", (*data)["ForUserID"])

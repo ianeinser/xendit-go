@@ -65,6 +65,8 @@ func (c *Client) CreatePaymentMethodWithContext(ctx context.Context, data *map[s
 	response := &xendit.PaymentMethod2{}
 	header := http.Header{}
 
+	fmt.Printf("data: %+v", *data)
+
 	idk := fmt.Sprintf("%v", (*data)["IdempotencyKey"])
 	fID := fmt.Sprintf("%v", (*data)["ForUserID"])
 
@@ -268,6 +270,8 @@ func (c *Client) CreatePaymentRequestWithContext(ctx context.Context, data *map[
 	response := &xendit.PaymentRequest{}
 	header := http.Header{}
 
+	fmt.Printf("data: %+v", *data)
+
 	idk := fmt.Sprintf("%v", (*data)["IdempotencyKey"])
 	fID := fmt.Sprintf("%v", (*data)["ForUserID"])
 
@@ -423,6 +427,8 @@ func (c *Client) CreateRefundWithContext(ctx context.Context, data *map[string]i
 
 	response := &xendit.Refund{}
 	header := http.Header{}
+
+	fmt.Printf("data: %+v", *data)
 
 	idk := fmt.Sprintf("%v", (*data)["IdempotencyKey"])
 	fID := fmt.Sprintf("%v", (*data)["ForUserID"])
