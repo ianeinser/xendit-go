@@ -78,10 +78,6 @@ func (c *Client) CreatePaymentMethodWithContext(ctx context.Context, data *map[s
 		header.Add("idempotency-key", idk)
 	}
 
-	if (*data)["ForUserID"] != nil {
-		header.Add("for-user-id", fmt.Sprintf("%s", (*data)["ForUserID"]))
-	}
-
 	fmt.Printf("Header %+v\n", header)
 
 	err := c.APIRequester.Call(
@@ -278,10 +274,6 @@ func (c *Client) CreatePaymentRequestWithContext(ctx context.Context, data *map[
 		header.Add("idempotency-key", idk)
 	}
 
-	if (*data)["ForUserID"] != nil {
-		header.Add("for-user-id", fmt.Sprintf("%s", (*data)["ForUserID"]))
-	}
-
 	fmt.Printf("Header %+v\n", header)
 
 	err := c.APIRequester.Call(
@@ -429,10 +421,6 @@ func (c *Client) CreateRefundWithContext(ctx context.Context, data *map[string]i
 
 	if idk != "" {
 		header.Add("idempotency-key", idk)
-	}
-
-	if (*data)["ForUserID"] != nil {
-		header.Add("for-user-id", fmt.Sprintf("%s", (*data)["ForUserID"]))
 	}
 
 	fmt.Printf("Header %+v\n", header)

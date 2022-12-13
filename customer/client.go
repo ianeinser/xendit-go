@@ -101,10 +101,6 @@ func (c *Client) CreateCustomerWithContext(ctx context.Context, data *map[string
 
 	header.Add("api-version", fmt.Sprintf("%s", APIVersion))
 
-	if (*data)["ForUserID"] != nil {
-		header.Add("for-user-id", fmt.Sprintf("%s", (*data)["ForUserID"]))
-	}
-
 	fmt.Printf("Header %+v\n", header)
 
 	err := c.APIRequester.Call(
@@ -264,16 +260,12 @@ func (c *Client) UpdateCustomerWithContext(ctx context.Context, data *map[string
 
 	queryString := ""
 
-	if data != nil {
-		metadata := (*data)["Metadata"].(map[string]interface{})
+	if (*data)["metadata"] != nil {
+		metadata := (*data)["metadata"].(map[string]interface{})
 		queryString = fmt.Sprintf("%s", metadata["customer_id"])
 	}
 
 	header.Add("api-version", fmt.Sprintf("%s", APIVersion))
-
-	if (*data)["ForUserID"] != nil {
-		header.Add("for-user-id", fmt.Sprintf("%s", (*data)["ForUserID"]))
-	}
 
 	fmt.Printf("Header %+v\n", header)
 	fmt.Printf("Query string %+v\n", queryString)
