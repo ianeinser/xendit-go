@@ -65,11 +65,11 @@ func (c *Client) CreatePaymentMethodWithContext(ctx context.Context, data *map[s
 	response := &xendit.PaymentMethod2{}
 	header := http.Header{}
 
-	if (*data)["IdempotencyKey"].(string) != "" {
+	if (*data)["IdempotencyKey"] != "" {
 		header.Add("idempotency-key", (*data)["IdempotencyKey"].(string))
 	}
 
-	if (*data)["ForUserID"].(string) != "" {
+	if (*data)["ForUserID"] != "" {
 		header.Add("for-user-id", (*data)["ForUserID"].(string))
 	}
 
@@ -261,11 +261,11 @@ func (c *Client) CreatePaymentRequestWithContext(ctx context.Context, data *map[
 	response := &xendit.PaymentRequest{}
 	header := http.Header{}
 
-	if (*data)["IdempotencyKey"].(string) != "" {
+	if (*data)["IdempotencyKey"] != "" {
 		header.Add("idempotency-key", (*data)["IdempotencyKey"].(string))
 	}
 
-	if (*data)["ForUserID"].(string) != "" {
+	if (*data)["ForUserID"] != "" {
 		header.Add("for-user-id", (*data)["ForUserID"].(string))
 	}
 
@@ -410,11 +410,11 @@ func (c *Client) CreateRefundWithContext(ctx context.Context, data *map[string]i
 	response := &xendit.Refund{}
 	header := http.Header{}
 
-	if (*data)["IdempotencyKey"].(string) != "" {
+	if (*data)["IdempotencyKey"] != "" {
 		header.Add("idempotency-key", (*data)["IdempotencyKey"].(string))
 	}
 
-	if (*data)["ForUserID"].(string) != "" {
+	if (*data)["ForUserID"] != "" {
 		header.Add("for-user-id", (*data)["ForUserID"].(string))
 	}
 
