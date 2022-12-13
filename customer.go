@@ -25,37 +25,37 @@ type Customer struct {
 	ID                string            `json:"id"`
 	ReferenceID       string            `json:"reference_id"`
 	Type              string            `json:"type"`
-	IndividualDetail  IndividualDetail  `json:"individual_detail" gorm:"embedded;embedded_prefix:id_"`
-	BusinessDetail    BusinessDetail    `json:"business_detail" gorm:"embedded;embedded_prefix:bd_"`
+	IndividualDetail  IndividualDetail  `json:"individual_detail,omitempty" gorm:"embedded;embedded_prefix:id_"`
+	BusinessDetail    BusinessDetail    `json:"business_detail,omitempty" gorm:"embedded;embedded_prefix:bd_"`
 	MobileNumber      string            `json:"mobile_number,omitempty"`
 	Email             string            `json:"email,omitempty"`
 	Description       string            `json:"description,omitempty"`
 	PhoneNumber       string            `json:"phone_number"`
 	HashedPhoneNumber string            `json:"hashed_phone_number"`
-	Addresses         []CustomerAddress `json:"addresses" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
+	Addresses         []CustomerAddress `json:"addresses,omitempty" gorm:"foreignKey:ReferenceID;references:ReferenceID"`
 	Metadata          datatypes.JSONMap `json:"metadata"`
 }
 
 type Employment struct {
-	EmployerName     string `json:"employer_name"`
-	NatureOfBusiness string `json:"nature_of_business"`
-	RoleDescription  string `json:"role_description"`
+	EmployerName     string `json:"employer_name,omitempty"`
+	NatureOfBusiness string `json:"nature_of_business,omitempty"`
+	RoleDescription  string `json:"role_description,omitempty"`
 }
 
 type IndividualDetail struct {
-	GivenNames   string     `json:"given_names"`
-	Surname      string     `json:"surname"`
-	Nationality  string     `json:"nationality"`
-	PlaceOfBirth string     `json:"place_of_birth"`
-	DateOfBirth  string     `json:"date_of_birth"`
-	Gender       string     `json:"gender"`
-	Employment   Employment `json:"employment" gorm:"embedded;embedded_prefix:emp_"`
+	GivenNames   string     `json:"given_names,omitempty"`
+	Surname      string     `json:"surname,omitempty"`
+	Nationality  string     `json:"nationality,omitempty"`
+	PlaceOfBirth string     `json:"place_of_birth,omitempty"`
+	DateOfBirth  string     `json:"date_of_birth,omitempty"`
+	Gender       string     `json:"gender,omitempty"`
+	Employment   Employment `json:"employment,omitempty" gorm:"embedded;embedded_prefix:emp_"`
 }
 
 type BusinessDetail struct {
-	BusinessName       string `json:"business_name"`
-	BusinessType       string `json:"business_type"`
-	NatureOfBusiness   string `json:"nature_of_business"`
-	BusinessDomicile   string `json:"business_domicile"`
-	DateOfRegistration string `json:"date_of_registration"`
+	BusinessName       string `json:"business_name,omitempty"`
+	BusinessType       string `json:"business_type,omitempty"`
+	NatureOfBusiness   string `json:"nature_of_business,omitempty"`
+	BusinessDomicile   string `json:"business_domicile,omitempty"`
+	DateOfRegistration string `json:"date_of_registration,omitempty"`
 }
