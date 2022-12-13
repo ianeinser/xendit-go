@@ -66,11 +66,11 @@ func (c *Client) CreatePaymentMethodWithContext(ctx context.Context, data *map[s
 	header := http.Header{}
 
 	if (*data)["IdempotencyKey"] != "" {
-		header.Add("idempotency-key", (*data)["IdempotencyKey"].(string))
+		header.Add("idempotency-key", fmt.Sprintf("%v", (*data)["IdempotencyKey"]))
 	}
 
 	if (*data)["ForUserID"] != "" {
-		header.Add("for-user-id", (*data)["ForUserID"].(string))
+		header.Add("for-user-id", fmt.Sprintf("%v", (*data)["ForUserID"]))
 	}
 
 	err := c.APIRequester.Call(
@@ -262,11 +262,11 @@ func (c *Client) CreatePaymentRequestWithContext(ctx context.Context, data *map[
 	header := http.Header{}
 
 	if (*data)["IdempotencyKey"] != "" {
-		header.Add("idempotency-key", (*data)["IdempotencyKey"].(string))
+		header.Add("idempotency-key", fmt.Sprintf("%v", (*data)["IdempotencyKey"]))
 	}
 
 	if (*data)["ForUserID"] != "" {
-		header.Add("for-user-id", (*data)["ForUserID"].(string))
+		header.Add("for-user-id", fmt.Sprintf("%v", (*data)["ForUserID"]))
 	}
 
 	err := c.APIRequester.Call(
@@ -411,11 +411,11 @@ func (c *Client) CreateRefundWithContext(ctx context.Context, data *map[string]i
 	header := http.Header{}
 
 	if (*data)["IdempotencyKey"] != "" {
-		header.Add("idempotency-key", (*data)["IdempotencyKey"].(string))
+		header.Add("idempotency-key", fmt.Sprintf("%v", (*data)["IdempotencyKey"]))
 	}
 
 	if (*data)["ForUserID"] != "" {
-		header.Add("for-user-id", (*data)["ForUserID"].(string))
+		header.Add("for-user-id", fmt.Sprintf("%v", (*data)["ForUserID"]))
 	}
 
 	err := c.APIRequester.Call(
