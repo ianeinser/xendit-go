@@ -107,6 +107,7 @@ type UpdateCustomerParams struct {
 	Metadata         map[string]interface{}   `json:"metadata,omitempty"`
 }
 
+/*
 // QueryString creates query string from GetCustomerByReferenceIDParams, ignores nil values
 func (p *UpdateCustomerParams) QueryString() string {
 	urlValues := &url.Values{}
@@ -115,3 +116,4 @@ func (p *UpdateCustomerParams) QueryString() string {
 
 	return urlValues.Encode()
 }
+*/

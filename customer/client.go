@@ -78,9 +78,6 @@ func (c *Client) CreateCustomer(data *map[string]interface{}) (*xendit.Customer,
 
 // CreateCustomerWithContext creates new customer
 func (c *Client) CreateCustomerWithContext(ctx context.Context, data *map[string]interface{}) (*xendit.Customer, *xendit.Error) {
-	if err := validator.ValidateRequired(ctx, data); err != nil {
-		return nil, validator.APIValidatorErr(err)
-	}
 
 	response := &xendit.Customer{}
 	header := http.Header{}
@@ -252,9 +249,6 @@ func (c *Client) UpdateCustomer(data *map[string]interface{}) (*xendit.Customer,
 
 // UpdateCustomerWithContext updates the details on a customer
 func (c *Client) UpdateCustomerWithContext(ctx context.Context, data *map[string]interface{}) (*xendit.Customer, *xendit.Error) {
-	if err := validator.ValidateRequired(ctx, data); err != nil {
-		return nil, validator.APIValidatorErr(err)
-	}
 
 	response := &xendit.Customer{}
 	header := http.Header{}
