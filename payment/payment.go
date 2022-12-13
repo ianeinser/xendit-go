@@ -6,6 +6,7 @@ import (
 	"github.com/ianeinser/xendit-go"
 )
 
+/*
 // CreatePaymentMethod creates new payment method for user
 func CreatePaymentMethod(data *CreatePaymentMethodParams) (*xendit.PaymentMethod2, *xendit.Error) {
 	return CreatePaymentMethodWithContext(context.Background(), data)
@@ -13,6 +14,22 @@ func CreatePaymentMethod(data *CreatePaymentMethodParams) (*xendit.PaymentMethod
 
 // CreatePaymentMethodWithContext creates new payment
 func CreatePaymentMethodWithContext(ctx context.Context, data *CreatePaymentMethodParams) (*xendit.PaymentMethod2, *xendit.Error) {
+	client, err := getClient()
+	if err != nil {
+		return nil, err
+	}
+
+	return client.CreatePaymentMethodWithContext(ctx, data)
+}
+*/
+
+// CreatePaymentMethod creates new payment method for user
+func CreatePaymentMethod(data *map[string]interface{}) (*xendit.PaymentMethod2, *xendit.Error) {
+	return CreatePaymentMethodWithContext(context.Background(), data)
+}
+
+// CreatePaymentMethodWithContext creates new payment
+func CreatePaymentMethodWithContext(ctx context.Context, data *map[string]interface{}) (*xendit.PaymentMethod2, *xendit.Error) {
 	client, err := getClient()
 	if err != nil {
 		return nil, err
@@ -66,6 +83,7 @@ func ListPaymentsByPaymentMethodIdWithContext(ctx context.Context, data *ListPay
 	return client.ListPaymentsByPaymentMethodIdWithContext(ctx, data)
 }
 
+/*
 // CreatePaymentRequest provides the following functionalities:
 // 1. Initializes the payment/capture process for Cards, E-wallets and Direct Debits
 // 2. Creates a payment method object along with the payment initialization
@@ -77,6 +95,26 @@ func CreatePaymentRequest(data *CreatePaymentRequestParams) (*xendit.PaymentRequ
 // 1. Initializes the payment/capture process for Cards, E-wallets and Direct Debits
 // 2. Creates a payment method object along with the payment initialization
 func CreatePaymentRequestWithContext(ctx context.Context, data *CreatePaymentRequestParams) (*xendit.PaymentRequest, *xendit.Error) {
+	client, err := getClient()
+	if err != nil {
+		return nil, err
+	}
+
+	return client.CreatePaymentRequestWithContext(ctx, data)
+}
+*/
+
+// CreatePaymentRequest provides the following functionalities:
+// 1. Initializes the payment/capture process for Cards, E-wallets and Direct Debits
+// 2. Creates a payment method object along with the payment initialization
+func CreatePaymentRequest(data *map[string]interface{}) (*xendit.PaymentRequest, *xendit.Error) {
+	return CreatePaymentRequestWithContext(context.Background(), data)
+}
+
+// CreatePaymentRequestWithContext provides the following functionalities:
+// 1. Initializes the payment/capture process for Cards, E-wallets and Direct Debits
+// 2. Creates a payment method object along with the payment initialization
+func CreatePaymentRequestWithContext(ctx context.Context, data *map[string]interface{}) (*xendit.PaymentRequest, *xendit.Error) {
 	client, err := getClient()
 	if err != nil {
 		return nil, err
@@ -115,6 +153,7 @@ func GetPaymentRequestByIdWithContext(ctx context.Context, data *GetPaymentReque
 	return client.GetPaymentRequestByIdWithContext(ctx, data)
 }
 
+/*
 // CreateRefund initialized the refund process for the provided amount for a given successful payment
 func CreateRefund(data *CreateRefundParams) (*xendit.Refund, *xendit.Error) {
 	return CreateRefundWithContext(context.Background(), data)
@@ -122,6 +161,22 @@ func CreateRefund(data *CreateRefundParams) (*xendit.Refund, *xendit.Error) {
 
 // CreateRefundWithContext initialized the refund process for the provided amount for a given successful payment
 func CreateRefundWithContext(ctx context.Context, data *CreateRefundParams) (*xendit.Refund, *xendit.Error) {
+	client, err := getClient()
+	if err != nil {
+		return nil, err
+	}
+
+	return client.CreateRefundWithContext(ctx, data)
+}
+*/
+
+// CreateRefund initialized the refund process for the provided amount for a given successful payment
+func CreateRefund(data *map[string]interface{}) (*xendit.Refund, *xendit.Error) {
+	return CreateRefundWithContext(context.Background(), data)
+}
+
+// CreateRefundWithContext initialized the refund process for the provided amount for a given successful payment
+func CreateRefundWithContext(ctx context.Context, data *map[string]interface{}) (*xendit.Refund, *xendit.Error) {
 	client, err := getClient()
 	if err != nil {
 		return nil, err

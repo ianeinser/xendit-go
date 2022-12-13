@@ -14,6 +14,7 @@ type Client struct {
 	APIRequester xendit.APIRequester
 }
 
+/*
 // CreatePaymentMethod creates new payment method for user
 func (c *Client) CreatePaymentMethod(data *CreatePaymentMethodParams) (*xendit.PaymentMethod2, *xendit.Error) {
 	return c.CreatePaymentMethodWithContext(context.Background(), data)
@@ -43,6 +44,45 @@ func (c *Client) CreatePaymentMethodWithContext(ctx context.Context, data *Creat
 		c.Opt.SecretKey,
 		header,
 		data,
+		response,
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	return response, nil
+}
+*/
+
+// CreatePaymentMethod creates new payment method for user
+func (c *Client) CreatePaymentMethod(data *map[string]interface{}) (*xendit.PaymentMethod2, *xendit.Error) {
+	return c.CreatePaymentMethodWithContext(context.Background(), data)
+}
+
+// CreatePaymentMethodWithContext creates new payment method for user
+func (c *Client) CreatePaymentMethodWithContext(ctx context.Context, data *map[string]interface{}) (*xendit.PaymentMethod2, *xendit.Error) {
+	if err := validator.ValidateRequired(ctx, data); err != nil {
+		return nil, validator.APIValidatorErr(err)
+	}
+
+	response := &xendit.PaymentMethod2{}
+	header := http.Header{}
+
+	if (*data)["IdempotencyKey"].(string) != "" {
+		header.Add("idempotency-key", (*data)["IdempotencyKey"].(string))
+	}
+
+	if (*data)["ForUserID"].(string) != "" {
+		header.Add("for-user-id", (*data)["ForUserID"].(string))
+	}
+
+	err := c.APIRequester.Call(
+		ctx,
+		"POST",
+		fmt.Sprintf("%s/v2/payment_methods", c.Opt.XenditURL),
+		c.Opt.SecretKey,
+		header,
+		*data,
 		response,
 	)
 	if err != nil {
@@ -165,6 +205,7 @@ func (c *Client) ListPaymentsByPaymentMethodIdWithContext(ctx context.Context, d
 	return response, nil
 }
 
+/*
 // CreatePaymentRequest provides the following functionalities:
 // 1. Initializes the payment/capture process for Cards, E-wallets and Direct Debits
 // 2. Creates a payment method object along with the payment initialization
@@ -198,6 +239,49 @@ func (c *Client) CreatePaymentRequestWithContext(ctx context.Context, data *Crea
 		c.Opt.SecretKey,
 		header,
 		data,
+		response,
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	return response, nil
+}
+*/
+
+// CreatePaymentRequest provides the following functionalities:
+// 1. Initializes the payment/capture process for Cards, E-wallets and Direct Debits
+// 2. Creates a payment method object along with the payment initialization
+func (c *Client) CreatePaymentRequest(data *map[string]interface{}) (*xendit.PaymentRequest, *xendit.Error) {
+	return c.CreatePaymentRequestWithContext(context.Background(), data)
+}
+
+// CreatePaymentMethodWithContext provides the following functionalities:
+// 1. Initializes the payment/capture process for Cards, E-wallets and Direct Debits
+// 2. Creates a payment method object along with the payment initialization
+func (c *Client) CreatePaymentRequestWithContext(ctx context.Context, data *map[string]interface{}) (*xendit.PaymentRequest, *xendit.Error) {
+	if err := validator.ValidateRequired(ctx, data); err != nil {
+		return nil, validator.APIValidatorErr(err)
+	}
+
+	response := &xendit.PaymentRequest{}
+	header := http.Header{}
+
+	if (*data)["IdempotencyKey"].(string) != "" {
+		header.Add("idempotency-key", (*data)["IdempotencyKey"].(string))
+	}
+
+	if (*data)["ForUserID"].(string) != "" {
+		header.Add("for-user-id", (*data)["ForUserID"].(string))
+	}
+
+	err := c.APIRequester.Call(
+		ctx,
+		"POST",
+		fmt.Sprintf("%s/payment_requests", c.Opt.XenditURL),
+		c.Opt.SecretKey,
+		header,
+		*data,
 		response,
 	)
 	if err != nil {
@@ -281,6 +365,7 @@ func (c *Client) GetPaymentRequestByIdWithContext(ctx context.Context, data *Get
 	return response, nil
 }
 
+/*
 // CreateRefund initialized the refund process for the provided amount for a given successful payment
 func (c *Client) CreateRefund(data *CreateRefundParams) (*xendit.Refund, *xendit.Error) {
 	return c.CreateRefundWithContext(context.Background(), data)
@@ -310,6 +395,45 @@ func (c *Client) CreateRefundWithContext(ctx context.Context, data *CreateRefund
 		c.Opt.SecretKey,
 		header,
 		data,
+		response,
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	return response, nil
+}
+*/
+
+// CreateRefund initialized the refund process for the provided amount for a given successful payment
+func (c *Client) CreateRefund(data *map[string]interface{}) (*xendit.Refund, *xendit.Error) {
+	return c.CreateRefundWithContext(context.Background(), data)
+}
+
+// CreateRefundWithContext initialized the refund process for the provided amount for a given successful payment
+func (c *Client) CreateRefundWithContext(ctx context.Context, data *map[string]interface{}) (*xendit.Refund, *xendit.Error) {
+	if err := validator.ValidateRequired(ctx, data); err != nil {
+		return nil, validator.APIValidatorErr(err)
+	}
+
+	response := &xendit.Refund{}
+	header := http.Header{}
+
+	if (*data)["IdempotencyKey"].(string) != "" {
+		header.Add("idempotency-key", (*data)["IdempotencyKey"].(string))
+	}
+
+	if (*data)["ForUserID"].(string) != "" {
+		header.Add("for-user-id", (*data)["ForUserID"].(string))
+	}
+
+	err := c.APIRequester.Call(
+		ctx,
+		"POST",
+		fmt.Sprintf("%s/refunds", c.Opt.XenditURL),
+		c.Opt.SecretKey,
+		header,
+		*data,
 		response,
 	)
 	if err != nil {
