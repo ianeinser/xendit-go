@@ -53,7 +53,7 @@ type PaymentMethod2 struct {
 	Reusability        string             `json:"reusability"`
 	Country            string             `json:"country"`
 	Status             string             `json:"status"`
-	Actions            Actions2           `json:"actions,omitempty" gorm:"embedded;embedded_prefix:act_"`
+	Actions            []Actions2         `json:"actions,omitempty" gorm:"embedded;embedded_prefix:act_"`
 	PaymentRequestID   string             `json:"payment_request_id"`
 	Currency           string             `json:"currency"`
 	Amount             float64            `json:"amount"`
