@@ -53,35 +53,35 @@ type PaymentMethod2 struct {
 	Reusability        string             `json:"reusability"`
 	Country            string             `json:"country"`
 	Status             string             `json:"status"`
-	Actions            Actions2           `json:"actions" gorm:"embedded;embedded_prefix:act_"`
+	Actions            Actions2           `json:"actions,omitempty" gorm:"embedded;embedded_prefix:act_"`
 	PaymentRequestID   string             `json:"payment_request_id"`
 	Currency           string             `json:"currency"`
 	Amount             float64            `json:"amount"`
 	Type               string             `json:"type"`
-	Ewallet            Ewallet            `json:"ewallet" gorm:"embedded;embedded_prefix:ew_"`
-	DirectDebit        DirectDebit        `json:"direct_debit" gorm:"embedded;embedded_prefix:dd_"`
-	Card               Card               `json:"card" gorm:"embedded;embedded_prefix:cd_"`
-	OverTheCounter     OverTheCounter     `json:"over_the_counter" gorm:"embedded;embedded_prefix:otc_"`
-	VirtualAccount     VirtualAccount2    `json:"virtual_account" gorm:"embedded;embedded_prefix:va_"`
-	QrCode             QrCode             `json:"qr_code" gorm:"embedded;embedded_prefix:qr_"`
+	Ewallet            Ewallet            `json:"ewallet,omitempty" gorm:"embedded;embedded_prefix:ew_"`
+	DirectDebit        DirectDebit        `json:"direct_debit,omitempty" gorm:"embedded;embedded_prefix:dd_"`
+	Card               Card               `json:"card,omitempty" gorm:"embedded;embedded_prefix:cd_"`
+	OverTheCounter     OverTheCounter     `json:"over_the_counter,omitempty" gorm:"embedded;embedded_prefix:otc_"`
+	VirtualAccount     VirtualAccount2    `json:"virtual_account,omitempty" gorm:"embedded;embedded_prefix:va_"`
+	QrCode             QrCode             `json:"qr_code,omitempty" gorm:"embedded;embedded_prefix:qr_"`
 	Description        string             `json:"description,omitempty"`
-	BillingInformation BillingInformation `json:"billing_information" gorm:"embedded;embedded_prefix:bi_"`
+	BillingInformation BillingInformation `json:"billing_information,omitempty" gorm:"embedded;embedded_prefix:bi_"`
 	Created            string             `json:"created"`
 	Updated            string             `json:"updated"`
 	Metadata           datatypes.JSONMap  `json:"metadata,omitempty"`
 }
 
 type Actions2 struct {
-	Method  string `json:"method"`
-	UrlType string `json:"url_type"`
-	Action  string `json:"action"`
-	Url     string `json:"url"`
+	Method  string `json:"method,omitempty"`
+	UrlType string `json:"url_type,omitempty"`
+	Action  string `json:"action,omitempty"`
+	Url     string `json:"url,omitempty"`
 }
 
 type Ewallet struct {
-	ChannelCode       string            `json:"channel_code"`
-	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"embedded;embedded_prefix:cp_"`
-	Account           Account2          `json:"account" gorm:"embedded;embedded_prefix:acc_"`
+	ChannelCode       string            `json:"channel_code,omitempty"`
+	ChannelProperties ChannelProperties `json:"channel_properties,omitempty" gorm:"embedded;embedded_prefix:cp_"`
+	Account           Account2          `json:"account,omitempty" gorm:"embedded;embedded_prefix:acc_"`
 }
 
 type Account2 struct {
@@ -92,11 +92,11 @@ type Account2 struct {
 }
 
 type DirectDebit struct {
-	ChannelCode       string            `json:"channel_code"`
-	Type              string            `json:"type"`
-	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"embedded;embedded_prefix:cp_"`
-	BankAccount       BankAccount       `json:"bank_account" gorm:"embedded;embedded_prefix:ba_"`
-	DebitCard         DebitCard         `json:"debit_card" gorm:"embedded;embedded_prefix:dc_"`
+	ChannelCode       string            `json:"channel_code,omitempty"`
+	Type              string            `json:"type,omitempty"`
+	ChannelProperties ChannelProperties `json:"channel_properties,omitempty" gorm:"embedded;embedded_prefix:cp_"`
+	BankAccount       BankAccount       `json:"bank_account,omitempty" gorm:"embedded;embedded_prefix:ba_"`
+	DebitCard         DebitCard         `json:"debit_card,omitempty" gorm:"embedded;embedded_prefix:dc_"`
 }
 
 type BankAccount struct {
@@ -112,54 +112,54 @@ type DebitCard struct {
 }
 
 type Card struct {
-	Currency          string            `json:"currency"`
-	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"embedded;embedded_prefix:cp_"`
-	CardInformation   CardInformation   `json:"card_information" gorm:"embedded;embedded_prefix:ci_"`
+	Currency          string            `json:"currency,omitempty"`
+	ChannelProperties ChannelProperties `json:"channel_properties,omitempty" gorm:"embedded;embedded_prefix:cp_"`
+	CardInformation   CardInformation   `json:"card_information,omitempty" gorm:"embedded;embedded_prefix:ci_"`
 }
 
 type CardInformation struct {
-	TokenID          string `json:"token_id"`
+	TokenID          string `json:"token_id,omitempty"`
 	CardNumber       string `json:"card_number,omitempty"`
 	MaskedCardNumber string `json:"masked_card_number,omitempty"`
-	ExpiryMonth      string `json:"expiry_month"`
-	ExpiryYear       string `json:"expiry_year"`
+	ExpiryMonth      string `json:"expiry_month,omitempty"`
+	ExpiryYear       string `json:"expiry_year,omitempty"`
 	CardholderName   string `json:"cardholder_name,omitempty"`
 	Cvv              string `json:"cvv,omitempty"`
 	Fingerprint      string `json:"fingerprint,omitempty"`
 	Type             string `json:"type,omitempty"`
-	Network          string `json:"network"`
+	Network          string `json:"network,omitempty"`
 	Country          string `json:"country,omitempty"`
 	Issuer           string `json:"issuer,omitempty"`
 }
 
 type OverTheCounter struct {
-	ChannelCode       string            `json:"channel_code"`
-	Currency          string            `json:"currency"`
+	ChannelCode       string            `json:"channel_code,omitempty"`
+	Currency          string            `json:"currency,omitempty"`
 	Amount            float64           `json:"amount,omitempty"`
-	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"embedded;embedded_prefix:cp_"`
+	ChannelProperties ChannelProperties `json:"channel_properties,omitempty" gorm:"embedded;embedded_prefix:cp_"`
 }
 
 type VirtualAccount2 struct {
-	ChannelCode       string            `json:"channel_code"`
-	Currency          string            `json:"currency"`
+	ChannelCode       string            `json:"channel_code,omitempty"`
+	Currency          string            `json:"currency,omitempty"`
 	Amount            float64           `json:"amount,omitempty"`
-	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"embedded;embedded_prefix:cp_"`
+	ChannelProperties ChannelProperties `json:"channel_properties,omitempty" gorm:"embedded;embedded_prefix:cp_"`
 }
 
 type QrCode struct {
-	ChannelCode       string            `json:"channel_code"`
-	Currency          string            `json:"currency"`
+	ChannelCode       string            `json:"channel_code,omitempty"`
+	Currency          string            `json:"currency,omitempty"`
 	Amount            float64           `json:"amount,omitempty"`
-	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"embedded;embedded_prefix:cp_"`
+	ChannelProperties ChannelProperties `json:"channel_properties,omitempty" gorm:"embedded;embedded_prefix:cp_"`
 }
 
 type BillingInformation struct {
-	Country       string `json:"country"`
-	StreetLine1   string `json:"street_line1"`
-	StreetLine2   string `json:"street_line2"`
-	City          string `json:"city"`
-	ProvinceState string `json:"province_state"`
-	PostalCode    string `json:"postal_code"`
+	Country       string `json:"country,omitempty"`
+	StreetLine1   string `json:"street_line1,omitempty"`
+	StreetLine2   string `json:"street_line2,omitempty"`
+	City          string `json:"city,omitempty"`
+	ProvinceState string `json:"province_state,omitempty"`
+	PostalCode    string `json:"postal_code,omitempty"`
 }
 
 type PaymentRequest struct {
@@ -174,12 +174,12 @@ type PaymentRequest struct {
 	Status                  string                  `json:"status"`
 	Description             string                  `json:"description,omitempty"`
 	PaymentMethod           PaymentMethod2          `json:"payment_method" gorm:"embedded;embedded_prefix:pm_"`
-	Actions                 Actions2                `json:"actions" gorm:"embedded;embedded_prefix:act_"`
+	Actions                 Actions2                `json:"actions,omitempty" gorm:"embedded;embedded_prefix:act_"`
 	CaptureMethod           string                  `json:"capture_method"`
 	Initiator               string                  `json:"initiator"`
-	ChannelProperties       ChannelProperties       `json:"channel_properties" gorm:"embedded;embedded_prefix:cp_"`
-	ShippingInformation     ShippingInformation2    `json:"shipping_information" gorm:"embedded;embedded_prefix:si_"`
-	CardVerificationResults CardVerificationResults `json:"card_verification_results" gorm:"embedded;embedded_prefix:cvr_"`
+	ChannelProperties       ChannelProperties       `json:"channel_properties,omitempty" gorm:"embedded;embedded_prefix:cp_"`
+	ShippingInformation     ShippingInformation2    `json:"shipping_information,omitempty" gorm:"embedded;embedded_prefix:si_"`
+	CardVerificationResults CardVerificationResults `json:"card_verification_results,omitempty" gorm:"embedded;embedded_prefix:cvr_"`
 	FailureCode             string                  `json:"failure_code"`
 	Created                 string                  `json:"created"`
 	Updated                 string                  `json:"updated"`
@@ -187,25 +187,25 @@ type PaymentRequest struct {
 }
 
 type ShippingInformation2 struct {
-	Country       string `json:"country"`
-	StreetLine1   string `json:"street_line1"`
-	StreetLine2   string `json:"street_line2"`
-	City          string `json:"city"`
-	ProvinceState string `json:"province_state"`
-	PostalCode    string `json:"postal_code"`
+	Country       string `json:"country,omitempty"`
+	StreetLine1   string `json:"street_line1,omitempty"`
+	StreetLine2   string `json:"street_line2,omitempty"`
+	City          string `json:"city,omitempty"`
+	ProvinceState string `json:"province_state,omitempty"`
+	PostalCode    string `json:"postal_code,omitempty"`
 }
 
 type CardVerificationResults struct {
-	ThreeDSecure              ThreeDSecure `json:"three_d_secure" gorm:"embedded;embedded_prefix:tds_"`
-	CvvResult                 string       `json:"cvv_result"`
-	AddressVerificationResult string       `json:"addres_verification_result"`
+	ThreeDSecure              ThreeDSecure `json:"three_d_secure,omitempty" gorm:"embedded;embedded_prefix:tds_"`
+	CvvResult                 string       `json:"cvv_result,omitempty"`
+	AddressVerificationResult string       `json:"addres_verification_result,omitempty"`
 }
 
 type ThreeDSecure struct {
-	ThreeDSecureFlow    string `json:"three_d_Secure_flow"`
-	EciCode             string `json:"eci_code"`
-	ThreeDSecureResult  string `json:"three_d_secure_result"`
-	ThreeDSecureVersion string `json:"three_d_secure_version"`
+	ThreeDSecureFlow    string `json:"three_d_Secure_flow,omitempty"`
+	EciCode             string `json:"eci_code,omitempty"`
+	ThreeDSecureResult  string `json:"three_d_secure_result,omitempty"`
+	ThreeDSecureVersion string `json:"three_d_secure_version,omitempty"`
 }
 
 type Refund struct {
