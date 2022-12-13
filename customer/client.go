@@ -265,7 +265,8 @@ func (c *Client) UpdateCustomerWithContext(ctx context.Context, data *map[string
 	queryString := ""
 
 	if data != nil {
-		queryString = fmt.Sprintf("%s", (*data)["CustomerID"])
+		metadata := (*data)["Metadata"].(map[string]interface{})
+		queryString = fmt.Sprintf("%s", metadata["customer_id"])
 	}
 
 	header.Add("api-version", fmt.Sprintf("%s", APIVersion))
@@ -275,6 +276,7 @@ func (c *Client) UpdateCustomerWithContext(ctx context.Context, data *map[string
 	}
 
 	fmt.Printf("Header %+v\n", header)
+	fmt.Printf("Query string %+v\n", queryString)
 
 	err := c.APIRequester.Call(
 		ctx,
