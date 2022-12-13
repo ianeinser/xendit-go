@@ -65,12 +65,12 @@ func (c *Client) CreatePaymentMethodWithContext(ctx context.Context, data *map[s
 	response := &xendit.PaymentMethod2{}
 	header := http.Header{}
 
-	fmt.Printf("data: %+v", *data)
+	fmt.Printf("data: %+v\n", *data)
 
 	idk := fmt.Sprintf("%v", (*data)["IdempotencyKey"])
 	fID := fmt.Sprintf("%v", (*data)["ForUserID"])
 
-	fmt.Printf("idempotency-key: %s, for-user-id: %s", idk, fID)
+	fmt.Printf("idempotency-key: %s, for-user-id: %s\n", idk, fID)
 
 	if idk != "" {
 		header.Add("idempotency-key", idk)
@@ -80,7 +80,7 @@ func (c *Client) CreatePaymentMethodWithContext(ctx context.Context, data *map[s
 		header.Add("for-user-id", fID)
 	}
 
-	fmt.Printf("Header %+v", header)
+	fmt.Printf("Header %+v\n", header)
 
 	err := c.APIRequester.Call(
 		ctx,
@@ -270,12 +270,12 @@ func (c *Client) CreatePaymentRequestWithContext(ctx context.Context, data *map[
 	response := &xendit.PaymentRequest{}
 	header := http.Header{}
 
-	fmt.Printf("data: %+v", *data)
+	fmt.Printf("data: %+v\n", *data)
 
 	idk := fmt.Sprintf("%v", (*data)["IdempotencyKey"])
 	fID := fmt.Sprintf("%v", (*data)["ForUserID"])
 
-	fmt.Printf("idempotency-key: %s, for-user-id: %s", idk, fID)
+	fmt.Printf("idempotency-key: %s, for-user-id: %s\n", idk, fID)
 
 	if idk != "" {
 		header.Add("idempotency-key", idk)
@@ -285,7 +285,7 @@ func (c *Client) CreatePaymentRequestWithContext(ctx context.Context, data *map[
 		header.Add("for-user-id", fID)
 	}
 
-	fmt.Printf("Header %+v", header)
+	fmt.Printf("Header %+v\n", header)
 
 	err := c.APIRequester.Call(
 		ctx,
@@ -428,12 +428,12 @@ func (c *Client) CreateRefundWithContext(ctx context.Context, data *map[string]i
 	response := &xendit.Refund{}
 	header := http.Header{}
 
-	fmt.Printf("data: %+v", *data)
+	fmt.Printf("data: %+v\n", *data)
 
 	idk := fmt.Sprintf("%v", (*data)["IdempotencyKey"])
 	fID := fmt.Sprintf("%v", (*data)["ForUserID"])
 
-	fmt.Printf("idempotency-key: %s, for-user-id: %s", idk, fID)
+	fmt.Printf("idempotency-key: %s, for-user-id: %s\n", idk, fID)
 
 	if idk != "" {
 		header.Add("idempotency-key", idk)
@@ -443,7 +443,7 @@ func (c *Client) CreateRefundWithContext(ctx context.Context, data *map[string]i
 		header.Add("for-user-id", fID)
 	}
 
-	fmt.Printf("Header %+v", header)
+	fmt.Printf("Header %+v\n", header)
 
 	err := c.APIRequester.Call(
 		ctx,

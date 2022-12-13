@@ -82,13 +82,13 @@ func (c *Client) CreateCustomerWithContext(ctx context.Context, data *map[string
 	response := &xendit.Customer{}
 	header := http.Header{}
 
-	fmt.Printf("data: %+v", *data)
+	fmt.Printf("data: %+v\n", *data)
 
 	idk := fmt.Sprintf("%v", (*data)["IdempotencyKey"])
 	api := fmt.Sprintf("%v", (*data)["APIVersion"])
 	fID := fmt.Sprintf("%v", (*data)["ForUserID"])
 
-	fmt.Printf("idempotency-key: %s, for-user-id: %s, api-version: %s", idk, fID, api)
+	fmt.Printf("idempotency-key: %s, for-user-id: %s, api-version: %s\n", idk, fID, api)
 
 	if idk != "" {
 		header.Add("idempotency-key", idk)
@@ -102,7 +102,7 @@ func (c *Client) CreateCustomerWithContext(ctx context.Context, data *map[string
 		header.Add("for-user-id", fID)
 	}
 
-	fmt.Printf("Header %+v", header)
+	fmt.Printf("Header %+v\n", header)
 
 	err := c.APIRequester.Call(
 		ctx,
@@ -259,12 +259,12 @@ func (c *Client) UpdateCustomerWithContext(ctx context.Context, data *map[string
 	response := &xendit.Customer{}
 	header := http.Header{}
 
-	fmt.Printf("data: %+v", *data)
+	fmt.Printf("data: %+v\n", *data)
 
 	api := fmt.Sprintf("%v", (*data)["APIVersion"])
 	fID := fmt.Sprintf("%v", (*data)["ForUserID"])
 
-	fmt.Printf("for-user-id: %s, api-version: %s", fID, api)
+	fmt.Printf("for-user-id: %s, api-version: %s\n", fID, api)
 
 	queryString := ""
 
@@ -280,7 +280,7 @@ func (c *Client) UpdateCustomerWithContext(ctx context.Context, data *map[string
 		header.Add("for-user-id", fID)
 	}
 
-	fmt.Printf("Header %+v", header)
+	fmt.Printf("Header %+v\n", header)
 
 	err := c.APIRequester.Call(
 		ctx,
