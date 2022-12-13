@@ -61,9 +61,6 @@ func (c *Client) CreatePaymentMethod(data *map[string]interface{}) (*xendit.Paym
 
 // CreatePaymentMethodWithContext creates new payment method for user
 func (c *Client) CreatePaymentMethodWithContext(ctx context.Context, data *map[string]interface{}) (*xendit.PaymentMethod2, *xendit.Error) {
-	if err := validator.ValidateRequired(ctx, *data); err != nil {
-		return nil, validator.APIValidatorErr(err)
-	}
 
 	response := &xendit.PaymentMethod2{}
 	header := http.Header{}
@@ -260,9 +257,6 @@ func (c *Client) CreatePaymentRequest(data *map[string]interface{}) (*xendit.Pay
 // 1. Initializes the payment/capture process for Cards, E-wallets and Direct Debits
 // 2. Creates a payment method object along with the payment initialization
 func (c *Client) CreatePaymentRequestWithContext(ctx context.Context, data *map[string]interface{}) (*xendit.PaymentRequest, *xendit.Error) {
-	if err := validator.ValidateRequired(ctx, *data); err != nil {
-		return nil, validator.APIValidatorErr(err)
-	}
 
 	response := &xendit.PaymentRequest{}
 	header := http.Header{}
@@ -412,9 +406,6 @@ func (c *Client) CreateRefund(data *map[string]interface{}) (*xendit.Refund, *xe
 
 // CreateRefundWithContext initialized the refund process for the provided amount for a given successful payment
 func (c *Client) CreateRefundWithContext(ctx context.Context, data *map[string]interface{}) (*xendit.Refund, *xendit.Error) {
-	if err := validator.ValidateRequired(ctx, *data); err != nil {
-		return nil, validator.APIValidatorErr(err)
-	}
 
 	response := &xendit.Refund{}
 	header := http.Header{}
