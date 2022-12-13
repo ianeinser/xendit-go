@@ -2,6 +2,7 @@ package customer
 
 import (
 	"context"
+	"crypto/rand"
 	"fmt"
 	"net/http"
 
@@ -9,10 +10,20 @@ import (
 	"github.com/ianeinser/xendit-go/utils/validator"
 )
 
+const (
+	APIVersion = "2020-10-31"
+)
+
 // Client is the client used to invoke customer API.
 type Client struct {
 	Opt          *xendit.Option
 	APIRequester xendit.APIRequester
+}
+
+func GenerateIdempotencyKey() string {
+	b := make([]byte, 8)
+	rand.Read(b)
+	return fmt.Sprintf("%x", b)
 }
 
 /*
@@ -82,24 +93,16 @@ func (c *Client) CreateCustomerWithContext(ctx context.Context, data *map[string
 	response := &xendit.Customer{}
 	header := http.Header{}
 
-	fmt.Printf("data: %+v\n", *data)
-
-	idk := fmt.Sprintf("%v", (*data)["IdempotencyKey"])
-	api := fmt.Sprintf("%v", (*data)["APIVersion"])
-	fID := fmt.Sprintf("%v", (*data)["ForUserID"])
-
-	fmt.Printf("idempotency-key: %s, for-user-id: %s, api-version: %s\n", idk, fID, api)
+	idk := GenerateIdempotencyKey()
 
 	if idk != "" {
 		header.Add("idempotency-key", idk)
 	}
 
-	if api != "" {
-		header.Add("api-version", api)
-	}
+	header.Add("api-version", APIVersion)
 
-	if fID != "" {
-		header.Add("for-user-id", fID)
+	if (*data)["ForUserID"] != nil {
+		header.Add("for-user-id", fmt.Sprintf("%v", (*data)["ForUserID"]))
 	}
 
 	fmt.Printf("Header %+v\n", header)
@@ -259,25 +262,16 @@ func (c *Client) UpdateCustomerWithContext(ctx context.Context, data *map[string
 	response := &xendit.Customer{}
 	header := http.Header{}
 
-	fmt.Printf("data: %+v\n", *data)
-
-	api := fmt.Sprintf("%v", (*data)["APIVersion"])
-	fID := fmt.Sprintf("%v", (*data)["ForUserID"])
-
-	fmt.Printf("for-user-id: %s, api-version: %s\n", fID, api)
-
 	queryString := ""
 
 	if data != nil {
 		queryString = fmt.Sprintf("%v", (*data)["CustomerID"])
 	}
 
-	if api != "" {
-		header.Add("api-version", api)
-	}
+	header.Add("api-version", APIVersion)
 
-	if fID != "" {
-		header.Add("for-user-id", fID)
+	if (*data)["ForUserID"] != nil {
+		header.Add("for-user-id", fmt.Sprintf("%v", (*data)["ForUserID"]))
 	}
 
 	fmt.Printf("Header %+v\n", header)
