@@ -175,7 +175,7 @@ type PaymentRequest struct {
 	Status                  string                  `json:"status"`
 	Description             string                  `json:"description,omitempty"`
 	PaymentMethod           PaymentMethod2          `json:"payment_method" gorm:"embedded;embedded_prefix:pm_"`
-	Actions                 Actions2                `json:"actions,omitempty" gorm:"embedded;embedded_prefix:act_"`
+	Actions                 []Actions2              `json:"actions,omitempty" gorm:"embedded;embedded_prefix:act_"`
 	CaptureMethod           string                  `json:"capture_method"`
 	Initiator               string                  `json:"initiator"`
 	ChannelProperties       ChannelProperties       `json:"channel_properties,omitempty" gorm:"embedded;embedded_prefix:cp_"`
