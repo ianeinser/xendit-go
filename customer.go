@@ -25,8 +25,8 @@ type Customer struct {
 	ID                string            `json:"id"`
 	ReferenceID       string            `json:"reference_id"`
 	Type              string            `json:"type"`
-	IndividualDetail  IndividualDetail  `json:"individual_detail,omitempty" gorm:"embedded"`
-	BusinessDetail    BusinessDetail    `json:"business_detail,omitempty" gorm:"embedded"`
+	IndividualDetail  IndividualDetail  `json:"individual_detail,omitempty" gorm:"embedded;embeddedPrefix:id_"`
+	BusinessDetail    BusinessDetail    `json:"business_detail,omitempty" gorm:"embedded;embeddedPrefix:bd_"`
 	MobileNumber      string            `json:"mobile_number,omitempty"`
 	Email             string            `json:"email,omitempty"`
 	Description       string            `json:"description,omitempty"`
@@ -49,7 +49,7 @@ type IndividualDetail struct {
 	PlaceOfBirth string     `json:"place_of_birth,omitempty"`
 	DateOfBirth  string     `json:"date_of_birth,omitempty"`
 	Gender       string     `json:"gender,omitempty"`
-	Employment   Employment `json:"employment,omitempty" gorm:"embedded"`
+	Employment   Employment `json:"employment,omitempty" gorm:"embedded;embeddedPrefix:emp_"`
 }
 
 type BusinessDetail struct {

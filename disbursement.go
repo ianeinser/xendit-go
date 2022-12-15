@@ -58,7 +58,7 @@ type DisbursementPh struct {
 	Status              string              `json:"status"`
 	Created             *time.Time          `json:"created,omitempty"`
 	Updated             *time.Time          `json:"updated,omitempty"`
-	ReceiptNotification ReceiptNotification `json:"receipt_notification" gorm:"embedded"`
+	ReceiptNotification ReceiptNotification `json:"receipt_notification" gorm:"embedded;embeddedPrefix:rn_"`
 	Metadata            datatypes.JSONMap   `json:"metadata,omitempty"`
 	FailureCode         string              `json:"failure_code,omitempty"`
 }
@@ -94,7 +94,7 @@ type DisbursementChannel struct {
 	ChannelCode     string       `json:"channel_code"`
 	Name            string       `json:"name"`
 	ChannelCategory string       `json:"channel_category"`
-	AmountLimits    AmountLimits `json:"amount_limits" gorm:"embedded"`
+	AmountLimits    AmountLimits `json:"amount_limits" gorm:"embedded;embeddedPrefix:al_"`
 	Currency        string       `json:"currency"`
 }
 
