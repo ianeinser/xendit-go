@@ -154,6 +154,7 @@ type QrCode struct {
 	ChannelProperties ChannelProperties `json:"channel_properties" gorm:"embedded;embeddedPrefix:cpros_"`
 }
 
+/*
 type BillingInformation struct {
 	Country       string `json:"country,omitempty"`
 	StreetLine1   string `json:"street_line1,omitempty"`
@@ -162,7 +163,7 @@ type BillingInformation struct {
 	ProvinceState string `json:"province_state,omitempty"`
 	PostalCode    string `json:"postal_code,omitempty"`
 }
-
+*/
 type PaymentRequest struct {
 	ID                      string                  `json:"id"`
 	BusinessID              string                  `json:"business_id"`
