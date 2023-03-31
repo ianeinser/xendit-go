@@ -24,8 +24,8 @@ type CreateMethod struct {
 }
 
 type Account struct {
-	Name           *string `json:"name"`
-	AccountDetails *string `json:"account_details"`
+	Name           string  `json:"name"`
+	AccountDetails string  `json:"account_details"`
 	Balance        float64 `json:"balance"`
 	PointBalance   float64 `json:"point_balance"`
 }
