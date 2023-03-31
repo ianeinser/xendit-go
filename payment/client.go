@@ -62,14 +62,15 @@ func (c *Client) CreatePaymentMethodWithContext(ctx context.Context, data *Creat
 */
 
 // CreatePaymentMethod creates new payment method for user
-func (c *Client) CreatePaymentMethod(data *map[string]interface{}) (*xendit.PaymentMethod2, *xendit.Error) {
+func (c *Client) CreatePaymentMethod(data *map[string]interface{}) (*xendit.PaymentMethodResponse, *xendit.Error) {
 	return c.CreatePaymentMethodWithContext(context.Background(), data)
 }
 
 // CreatePaymentMethodWithContext creates new payment method for user
-func (c *Client) CreatePaymentMethodWithContext(ctx context.Context, data *map[string]interface{}) (*xendit.PaymentMethod2, *xendit.Error) {
+func (c *Client) CreatePaymentMethodWithContext(ctx context.Context, data *map[string]interface{}) (*xendit.PaymentMethodResponse, *xendit.Error) {
 
-	response := &xendit.PaymentMethod2{}
+	response := &xendit.PaymentMethodResponse{}
+
 	header := http.Header{}
 
 	idk := GenerateIdempotencyKey()
@@ -77,8 +78,6 @@ func (c *Client) CreatePaymentMethodWithContext(ctx context.Context, data *map[s
 	if idk != "" {
 		header.Add("idempotency-key", idk)
 	}
-
-	fmt.Printf("Header %+v\n", header)
 
 	err := c.APIRequester.Call(
 		ctx,
@@ -136,17 +135,17 @@ func (c *Client) ListPaymentMethodsWithContext(ctx context.Context, data *ListPa
 }
 
 // GetPaymentMethodById returns the corresponding Payment Method that matches the provided ID.
-func (c *Client) GetPaymentMethodById(data *GetPaymentMethodByIdParams) (*xendit.PaymentMethod2, *xendit.Error) {
+func (c *Client) GetPaymentMethodById(data *GetPaymentMethodByIdParams) (*xendit.PaymentMethodResponse, *xendit.Error) {
 	return c.GetPaymentMethodByIdWithContext(context.Background(), data)
 }
 
 // GetPaymentMethodByIdWithContext returns the corresponding Payment Method that matches the provided ID.
-func (c *Client) GetPaymentMethodByIdWithContext(ctx context.Context, data *GetPaymentMethodByIdParams) (*xendit.PaymentMethod2, *xendit.Error) {
+func (c *Client) GetPaymentMethodByIdWithContext(ctx context.Context, data *GetPaymentMethodByIdParams) (*xendit.PaymentMethodResponse, *xendit.Error) {
 	if err := validator.ValidateRequired(ctx, data); err != nil {
 		return nil, validator.APIValidatorErr(err)
 	}
 
-	response := &xendit.PaymentMethod2{}
+	response := &xendit.PaymentMethodResponse{}
 
 	header := http.Header{}
 
