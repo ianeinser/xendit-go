@@ -24,12 +24,12 @@ func CreatePaymentMethodWithContext(ctx context.Context, data *CreatePaymentMeth
 */
 
 // CreatePaymentMethod creates new payment method for user
-func CreatePaymentMethod(data *map[string]interface{}) (*xendit.PaymentMethod2, *xendit.Error) {
+func CreatePaymentMethod(data *map[string]interface{}) (*xendit.PaymentMethodResponse, *xendit.Error) {
 	return CreatePaymentMethodWithContext(context.Background(), data)
 }
 
 // CreatePaymentMethodWithContext creates new payment
-func CreatePaymentMethodWithContext(ctx context.Context, data *map[string]interface{}) (*xendit.PaymentMethod2, *xendit.Error) {
+func CreatePaymentMethodWithContext(ctx context.Context, data *map[string]interface{}) (*xendit.PaymentMethodResponse, *xendit.Error) {
 	client, err := getClient()
 	if err != nil {
 		return nil, err
@@ -54,12 +54,12 @@ func ListPaymentMethodsWithContext(ctx context.Context, data *ListPaymentMethods
 }
 
 // GetPaymentMethodById returns the corresponding Payment Method that matches the provided ID.
-func GetPaymentMethodById(data *GetPaymentMethodByIdParams) (*xendit.PaymentMethod2, *xendit.Error) {
+func GetPaymentMethodById(data *GetPaymentMethodByIdParams) (*xendit.PaymentMethodResponse, *xendit.Error) {
 	return GetPaymentMethodByIdWithContext(context.Background(), data)
 }
 
 // GetPaymentMethodByIdWithContext returns the corresponding Payment Method that matches the provided ID.
-func GetPaymentMethodByIdWithContext(ctx context.Context, data *GetPaymentMethodByIdParams) (*xendit.PaymentMethod2, *xendit.Error) {
+func GetPaymentMethodByIdWithContext(ctx context.Context, data *GetPaymentMethodByIdParams) (*xendit.PaymentMethodResponse, *xendit.Error) {
 	client, err := getClient()
 	if err != nil {
 		return nil, err
