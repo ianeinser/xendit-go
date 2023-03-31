@@ -49,8 +49,8 @@ func (p *ListPaymentMethodsParams) QueryString() string {
 }
 
 type ListPaymentMethodsResponse struct {
-	Data    []xendit.PaymentMethod2 `json:"data"`
-	HasMore bool                    `json:"has_more"`
+	Data    []xendit.PaymentMethodResponse `json:"data"`
+	HasMore bool                           `json:"has_more"`
 }
 
 // GetPaymentMethodByIdParams contains parameters for GetPaymentMethodById
