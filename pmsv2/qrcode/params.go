@@ -21,13 +21,13 @@ const (
 )
 
 type ChannelProperties struct {
-	QRString  string    `json:"qr_string"`
-	ExpiresAt time.Time `json:"expires_at,omitempty"`
+	QRString  string     `json:"qr_string"`
+	ExpiresAt *time.Time `json:"expires_at,omitempty"`
 }
 
 type CreateMethod struct {
-	Amount            float64               `json:"amount,omitempty"`
-	Currency          constant.CurrencyEnum `json:"currency,omitempty"`
-	ChannelCode       ChannelCode           `json:"channel_code"`
-	ChannelProperties ChannelProperties     `json:"channel_properties"`
+	Amount            *float64               `json:"amount,omitempty"`
+	Currency          *constant.CurrencyEnum `json:"currency,omitempty"`
+	ChannelCode       ChannelCode            `json:"channel_code"`
+	ChannelProperties ChannelProperties      `json:"channel_properties"`
 }

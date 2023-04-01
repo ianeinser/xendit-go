@@ -12,7 +12,6 @@ import (
 	"github.com/ianeinser/xendit-go/pmsv2/virtualaccount"
 )
 
-/*
 type CreatePaymentMethodParams struct {
 	Type               constant.PaymentMethodTypeEnum `json:"type"`
 	Country            constant.CountryEnum           `json:"country,omitempty"`
@@ -29,28 +28,6 @@ type CreatePaymentMethodParams struct {
 	OverTheCounter *overthecounter.CreateMethod `json:"over_the_counter,omitempty"`
 	VirtualAccount *virtualaccount.CreateMethod `json:"virtual_account,omitempty"`
 	QRCode         *qrcode.CreateMethod         `json:"qr_code,omitempty"`
-
-	ForUserID      string `json:"-"`
-	IdempotencyKey string `json:"-"`
-}
-*/
-
-type CreatePaymentMethodParams struct {
-	Type               constant.PaymentMethodTypeEnum `json:"type"`
-	Country            constant.CountryEnum           `json:"country,omitempty"`
-	CustomerID         string                         `json:"customer_id,omitempty"`
-	ReferenceID        string                         `json:"reference_id,omitempty"`
-	Reusability        constant.ReusabilityEnum       `json:"reusability"`
-	Description        string                         `json:"description,omitempty"`
-	Metadata           map[string]interface{}         `json:"metadata,omitempty"`
-	BillingInformation card.BillingInformation        `json:"billing_information,omitempty"`
-
-	Card           card.CreateMethod           `json:"card,omitempty"`
-	DirectDebit    directdebit.CreateMethod    `json:"direct_debit,omitempty"`
-	Ewallet        ewallet.CreateMethod        `json:"ewallet,omitempty"`
-	OverTheCounter overthecounter.CreateMethod `json:"over_the_counter,omitempty"`
-	VirtualAccount virtualaccount.CreateMethod `json:"virtual_account,omitempty"`
-	QRCode         qrcode.CreateMethod         `json:"qr_code,omitempty"`
 
 	ForUserID      string `json:"-"`
 	IdempotencyKey string `json:"-"`

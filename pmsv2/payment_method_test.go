@@ -57,13 +57,13 @@ func TestCreatePaymentMethod(t *testing.T) {
 			data: &CreatePaymentMethodParams{
 				Type:        constant.PaymentMethodTypeEwallet,
 				Country:     constant.CountryPH,
-				CustomerID:  "",
-				ReferenceID: referenceID,
+				CustomerID:  nil,
+				ReferenceID: &referenceID,
 				Reusability: constant.ReusabilityMultipleUse,
-				Description: "",
+				Description: nil,
 				Metadata:    nil,
 
-				Ewallet: ewallet.CreateMethod{
+				Ewallet: &ewallet.CreateMethod{
 					ChannelCode:       ewallet.Astrapay,
 					ChannelProperties: ewallet.ChannelProperties{},
 				},
