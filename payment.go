@@ -38,7 +38,9 @@ type ChannelProperties struct {
 	ExpiresAt            string `json:"expires_at,omitempty"`
 	VirtualAccountNumber string `json:"virtual_account_number,omitempty"`
 	SuggestedAmount      string `json:"suggested_amount,omitempty"`
-	QrString             string `json:"qr_string"`
+	QrString             string `json:"qr_string,omitempty"`
+	AccountHolderName    string `json:"account_holder_name,omitempty"`
+	AccountNumber        string `json:"account_number,omitempty"`
 }
 
 type PaymentDetail struct {
