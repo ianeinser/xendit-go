@@ -16,8 +16,8 @@ type Disbursement struct {
 	ExternalID              string         `json:"external_id"`
 	Amount                  float64        `json:"amount"`
 	BankCode                string         `json:"bank_code"`
-	AccountNumber           string         `json:"account_number"`
 	AccountHolderName       string         `json:"account_holder_name"`
+	AccountNumber           string         `json:"account_number"`
 	DisbursementDescription string         `json:"disbursement_description"`
 	Status                  string         `json:"status"`
 	EmailTo                 pq.StringArray `json:"email_to,omitempty" gorm:"type:text[]"`
